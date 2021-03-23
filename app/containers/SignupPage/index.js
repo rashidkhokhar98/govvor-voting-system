@@ -9,6 +9,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { CountryDropdown } from 'react-country-region-selector';
+
+
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -30,16 +33,16 @@ export function SignupPage() {
   });
 
   const [formData, setFormData] = useState('');
+  const [country, setCountry] = useState('');
 
   const [role, setRole]=useState(roles ||[]);
 
   const onSubmitt = data => {
     console.log('data', data);
+    console.log('country', country);
+    
     setFormData({ ...data });
     reset();
-  };
-  const handleSelect = (country) => {
-    console.log(country)
   }
   return (
     <div className="container-fluid ">
@@ -137,6 +140,16 @@ export function SignupPage() {
             </div>
         </div>
           </div>
+          <div className="row">
+          <div className="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <CountryDropdown
+              className="form-control"
+              value={country}
+              
+              onChange={val => setCountry(val)}
+            />
+          </div>
+        </div>
         <div className="row ">
           <div className="col text-center">
               <button type="submit" className="btn btn-primary">
