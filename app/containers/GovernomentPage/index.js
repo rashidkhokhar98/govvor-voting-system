@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 //import Bill from "../../components/Bill";
-import CompactProfile from "../../components/CompactProfile";
-import MenuBar from '../../components/MenuBar'
-import { Button } from "react-bootstrap";
-import {ElectionCategories} from '../../constant';
-
+import CompactProfile from '../../components/CompactProfile';
+import MenuBar from '../../components/MenuBar';
+import { Button } from 'react-bootstrap';
+import { ElectionCategories } from '../../constant';
+import { Card } from 'react-bootstrap';
 
 export function GovernomentPage() {
   /*const placeHolderObj1="King";
@@ -26,95 +26,122 @@ export function GovernomentPage() {
    const[senatorCategories, setsenatorCategories]=useState(ElectionCategories[placeHolderObj3].categories || []);
    const[mayerCategories, setMayerCategories]=useState(ElectionCategories[placeHolderObj4].categories || []);
   */
-   return (
+  return (
     <div className="cntainer-fluid row">
-    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
-      <MenuBar/>
-    </div>
-      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
-      <div className="row mt-2">
-        <div className="col-12">
-        <center>
-   
-    <div className="border rounded border-dark w-50 pb-2">
+      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
+        <MenuBar />
+      </div>
+      <div
+        className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-2"
+        style={{ height: '1000px' }}
+      >
+        <div className="row d-flex bg-light">
+          
+          <div >
+            <Card
+              className="ml-2 mb-2 border border-dark"
+              style={{ width: '12rem' }}
+            >
+              <Card.Header className="bg-light">
+                <img
+                  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                  alt="Profile Pic"
+                  width="70em"
+                  height="70em"
+                />
+              </Card.Header>
+              <Card.Body>
+                <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
+                  <b>Name:</b>
+                  <br />
+                  <b>Rank:</b>
 
-<div className="row mx-auto"  >
+                  <br />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
 
-<div className="col-md-9 text-left" >
+          <div >
+            <Card
+              className="ml-2 mb-2 border border-dark"
+              style={{ width: '12rem' }}
+            >
+              <Card.Header className="bg-light">
+                <img
+                  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                  alt="Profile Pic"
+                  width="70em"
+                  height="70em"
+                />
+              </Card.Header>
+              <Card.Body>
+                <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
+                  <b>Name:</b>
+                  <br />
+                  <b>Rank:</b>
 
-<h1 className="font-style "><i>Bill Name</i></h1>
-<h3><i>Bill Number</i></h3>
-<p>Bill Description</p>
+                  <br />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
 
-</div>
-<div className="col-md-3 text-center">
+          <div >
+            <Card
+              className="ml-2 mb-2 border border-dark"
+              style={{ width: '12rem' }}
+            >
+              <Card.Header className="bg-light">
+                <img
+                  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                  alt="Profile Pic"
+                  width="70em"
+                  height="70em"
+                />
+              </Card.Header>
+              <Card.Body>
+                <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
+                  <b>Name:</b>
+                  <br />
+                  <b>Rank:</b>
 
-<table>
-<tbody>
-    <tr>
-        <td>
-        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <small>Name</small>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <small>Rank</small>
-        </td>
-    </tr>
-</tbody>
-</table>
+                  <br />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
 
-</div>
+          <div >
+            <Card
+              className="ml-2 mb-2 border border-dark"
+              style={{ width: '12rem' }}
+            >
+              <Card.Header className="bg-light">
+                <img
+                  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                  alt="Profile Pic"
+                  width="70em"
+                  height="70em"
+                />
+              </Card.Header>
+              <Card.Body>
+                <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
+                  <b>Name:</b>
+                  <br />
+                  <b>Rank:</b>
 
-</div>
-<hr/>
+                  <br />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
 
-<div className="row">
-<div className="col-md-4"><Button variant="success">Vote</Button>{' '}</div>
-<div className="col-md-4"><Button variant="primary">Share</Button>{' '}</div>
-<div className="col-md-4"><Button variant="danger">Claim</Button>{' '}</div>
-</div>
-
-
-    </div>
-    </center>
         </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-<center>
-<CompactProfile />
-</center>
-<hr style={{backgroundColor: "black"}} />
 
-</div>
-</div>
-<div className="row">
-          <div className="col-12">
-<center>
-<CompactProfile />
-</center>
-<hr style={{backgroundColor: "black"}} />
-</div>
-</div>
-
-<div className="row">
- <div className="col-12">
-<center>
-<CompactProfile />
-</center>
-<hr style={{backgroundColor: "black"}} />
-</div>
-</div>
-
+      </div>
     </div>
-    </div>
- );
+  );
 }
 
 GovernomentPage.propTypes = {

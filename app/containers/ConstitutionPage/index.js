@@ -26,7 +26,7 @@ const placeHolderObj4="Mayer";
 
   return ( 
 <div className="cntainer-fluid row">
-    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
+    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" >
       <MenuBar/>
     </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-5 mb-5">

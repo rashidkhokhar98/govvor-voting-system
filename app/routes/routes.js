@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 // Import Containers
 import HomePage from '../containers/HomePage';
 import SignupPage from '../containers/SignupPage';
+import LoginPage from '../containers/LoginPage';
 import ElectionsPage from '../containers/ElectionsPage';
 import GovernomentPage from '../containers/GovernomentPage';
 import ConstitutionPage from '../containers/ConstitutionPage';
@@ -15,6 +16,7 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/signup" component={SignupPage} />
+      <Route exact path="/login" component={LoginPage} />
       <Route exact path="/election" component={ElectionsPage} />
       <Route exact path="/governoment" component={GovernomentPage} />
       <Route exact path="/constitution" component={ConstitutionPage} />

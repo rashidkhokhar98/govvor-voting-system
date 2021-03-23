@@ -34,71 +34,22 @@ export default function HomePage() {
     reset();
   };
   return (
-    <div className="cntainer-fluid row">
-    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
+    <div className="cntainer-fluid row " >
+    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{height: '1000px' }}>
       <MenuBar/>
     </div>
-      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
-       <h2 className="text-center mt-5 mb-5">
-        Welcome!
-    </h2>
-    <h3 className="text-center">
-      Please login here!
-    </h3>
-    <div className="row justify-content-center ">
-    <div className="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6 bg-dark  pb-3 pt-3 border mt-5 mb-5 text-light rounded ">
-      <form onSubmit={handleSubmit(onSubmitt)}>
-      
-        <div className="row">
-          
-          <div className="form-group col">
-            <label htmlFor="email">Email address</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              id="eamil"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              ref={register}
-            />
-            <div style={{ color: 'red' }}>
-              {errors && errors.email && '* Enter valid email '}
-            </div>
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="form-group col">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-              ref={register}
-            />
-            <div style={{ color: 'red' }}>
-              {errors && errors.password && '* Password is required'}
-            </div>
-          </div>
-          </div>
-
-        <div className="row ">
-          <div className="col text-center">
-              <button type="submit" className="btn btn-primary">
-                Login!
-              </button>
-              </div>
-
-        </div>
-      </form>
-    </div>
-    </div>
+      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
+       <h1 className="text-center mt-5 mb-5">
+        Welcome to Govvor.com !
+    </h1>
+    
+    <form>
+    <div class="form-group">
+    <textarea class="form-control" className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 " id="exampleFormControlTextarea1" placeholder="Please Write Bill Heading! " rows="1"></textarea>
+    <textarea class="form-control" className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 " id="exampleFormControlTextarea1" placeholder="Please Write Bill Description! " rows="10"></textarea>
+  </div>
+  <a className="btn btn-success">Post</a>
+    </form>
   
     </div>
     </div>
