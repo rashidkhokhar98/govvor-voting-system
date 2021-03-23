@@ -17,7 +17,7 @@ import { Card } from "react-bootstrap";
 
 import {ElectionCategories} from '../../constant';
 import { Button } from "react-bootstrap";
-
+//import Avatar from '../../images/User-Avatar.png';
 
 export function PublicPage() {
  
@@ -75,7 +75,7 @@ let abc={...card};
 <tbody>
     <tr>
         <td>
-        <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="80em" height="80em" />
+        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
         </td>
     </tr>
     <tr>
@@ -131,7 +131,7 @@ let abc={...card};
             <div onClick={()=>onClick(item)}>
      <Card className="ml-2 mb-2" style={{ width: '12rem', border: "1px solid black"}} >
     <Card.Header style={{backgroundColor: "transparent" }} >
-    <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="70em" height="70em" />
+    <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="70em" height="70em" />
     </Card.Header>
 <Card.Body>
 <Card.Text style={{fontSize: "medium", lineHeight: "25px"}}>
@@ -168,7 +168,7 @@ let abc={...card};
     <div onClick={()=>onClick(item)}>
 <Card className="ml-2 mb-2" style={{ width: '12rem', border: "1px solid black"}}>
 <Card.Header style={{backgroundColor: "transparent" }} >
-<img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="70em" height="70em" />
+<img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="70em" height="70em" />
 </Card.Header>
 <Card.Body>
 <Card.Text style={{fontSize: "medium", lineHeight: "25px"}}>
@@ -206,7 +206,7 @@ let abc={...card};
     <div onClick={()=>onClick(item)}>
 <Card className="ml-2 mb-2" style={{ width: '12rem', border: "1px solid black"}}>
 <Card.Header style={{backgroundColor: "transparent" }} >
-<img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="70em" height="70em" />
+<img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="70em" height="70em" />
 </Card.Header>
 <Card.Body>
 <Card.Text style={{fontSize: "medium", lineHeight: "25px"}}>
@@ -244,7 +244,7 @@ let abc={...card};
     <div onClick={()=>onClick(item)}>
 <Card className="ml-2 mb-2" style={{ width: '12rem', border: "1px solid black"}}>
 <Card.Header style={{backgroundColor: "transparent" }} >
-<img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="70em" height="70em" />
+<img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="70em" height="70em" />
 </Card.Header>
 <Card.Body>
 <Card.Text style={{fontSize: "medium", lineHeight: "25px"}}>

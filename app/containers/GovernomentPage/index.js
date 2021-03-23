@@ -53,7 +53,7 @@ export function GovernomentPage() {
 <tbody>
     <tr>
         <td>
-        <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="80em" height="80em" />
+        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
         </td>
     </tr>
     <tr>

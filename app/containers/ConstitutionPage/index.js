@@ -29,8 +29,8 @@ const placeHolderObj4="Mayer";
     <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
       <MenuBar/>
     </div>
-      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
-    <div className="col-12 mt-2">
+      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-5 mb-5">
+    <div className="col-12">
       {kingCategories.map(item=>(
         <center>
    
@@ -51,7 +51,7 @@ const placeHolderObj4="Mayer";
 <tbody>
     <tr>
         <td>
-        <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="80em" height="80em" />
+        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
         </td>
     </tr>
     <tr>
@@ -106,7 +106,7 @@ const placeHolderObj4="Mayer";
 <tbody>
     <tr>
         <td>
-        <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="80em" height="80em" />
+        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
         </td>
     </tr>
     <tr>
@@ -161,7 +161,7 @@ const placeHolderObj4="Mayer";
 <tbody>
     <tr>
         <td>
-        <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="80em" height="80em" />
+        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
         </td>
     </tr>
     <tr>
@@ -216,7 +216,7 @@ const placeHolderObj4="Mayer";
 <tbody>
     <tr>
         <td>
-        <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="80em" height="80em" />
+        <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="80em" height="80em" />
         </td>
     </tr>
     <tr>

@@ -15,7 +15,7 @@ function CompactProfile() {
     <>
     <Card style={{ width: '12rem', border: "1px solid transparent",}}>
     <Card.Header style={{backgroundColor: "transparent" }} >
-    <img  src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="Profile Pic" width="70em" height="70em" />
+    <img  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png" alt="Profile Pic" width="70em" height="70em" />
     </Card.Header>
 
 
