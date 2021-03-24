@@ -95,7 +95,7 @@ export function PublicPage() {
               </div>
               <hr />
 
-              <div className="row">
+            {/*   <div className="row">
                 <Button
                   className="btn btn-success px-auto mx-auto"
                   onClick={() => addVote(card)}
@@ -109,7 +109,7 @@ export function PublicPage() {
                 <Button className="btn btn-danger px-auto mx-auto" href="/bill">
                   Claim
                 </Button>
-              </div>
+              </div>*/}
             </div>
             }
           </div>
