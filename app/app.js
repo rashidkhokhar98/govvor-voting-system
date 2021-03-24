@@ -18,7 +18,7 @@ import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
-import './App.css';
+import './app.css';
 
 //import bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
