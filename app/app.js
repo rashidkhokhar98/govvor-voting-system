@@ -54,7 +54,7 @@ const render = messages => {
       </div>
       <div>
       <a className="btn btn-success my-2 my-sm-0  mr-2" href="/Signup" >SignUp</a>
-      <a className="btn btn-primary my-2 my-sm-0" href="/login" >LogIn</a>
+      <a className="btn btn-success my-2 my-sm-0" href="/login" >LogIn</a>
       </div>
     </div>
   </nav>

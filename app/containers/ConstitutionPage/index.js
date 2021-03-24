@@ -24,28 +24,28 @@ const placeHolderObj4="Mayer";
  const[senatorCategories, setsenatorCategories]=useState(ElectionCategories[placeHolderObj3].categories || []);
  const[mayerCategories, setMayerCategories]=useState(ElectionCategories[placeHolderObj4].categories || []);
 
-  return ( 
-<div className="cntainer-fluid row">
-    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" >
+ return (
+    <div className="cntainer-fluid row " >
+    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark ">
       <MenuBar/>
     </div>
-      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-5 mb-5">
-    <div className="col-12">
+      <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
+        
+        
+<div className="row ">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       {kingCategories.map(item=>(
-        <center>
-   
-    <div className="border rounded border-dark w-50 pb-2">
+   <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pr-5 pb-2 pt-2">
+              <div className="row mx-auto">
+                <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
+                
 
-<div className="row mx-auto"  >
-
-<div className="col-md-9 text-left" >
-
-<h1 className="font-style "><i> {item.bill_name}</i></h1>
-<h3><i>Bill Number: {item.bill_number}</i></h3>
-<p>Bill Description: {item.bill_description}</p>
+<h3 className="font-style "><i> {item.bill_name}</i></h3>
+<h4><i>Bill Number: {item.bill_number}</i></h4>
+<p>Bill Description: <br/> {item.bill_description}</p>
 
 </div>
-<div className="col-md-3 text-center">
+<div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2 text-center">
 
 <table>
 <tbody>
@@ -61,7 +61,7 @@ const placeHolderObj4="Mayer";
     </tr>
     <tr>
         <td>
-            <small>Rank: {placeHolderObj1}</small>
+            <small>Rank: {item.rank}</small>
         </td>
     </tr>
 </tbody>
@@ -73,34 +73,31 @@ const placeHolderObj4="Mayer";
 <hr/>
 
 <div className="row">
-<div className="col-md-4"><Button variant="success">Vote</Button>{' '}</div>
-<div className="col-md-4"><Button variant="primary">Share</Button>{' '}</div>
-<div className="col-md-4"><Button variant="danger">Claim</Button>{' '}</div>
+
+<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
 
     </div>
-    <br />
-    </center>
-    
+   
     ))}
+    </div>
       </div>
-      <div className="col-12">
+      <div className="row ">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       {primenisterCategories.map(item=>(
-        <center>
-   
-    <div className="border rounded border-dark w-50 pb-2">
+   <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pr-5 pb-2 pt-2">
+              <div className="row mx-auto">
+                <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
+                
 
-<div className="row mx-auto"  >
-
-<div className="col-md-9 text-left" >
-
-<h1 className="font-style "><i> {item.bill_name}</i></h1>
-<h3><i>Bill Number: {item.bill_number}</i></h3>
-<p>Bill Description: {item.bill_description}</p>
+<h3 className="font-style "><i> {item.bill_name}</i></h3>
+<h4><i>Bill Number: {item.bill_number}</i></h4>
+<p>Bill Description: <br/> {item.bill_description}</p>
 
 </div>
-<div className="col-md-3 text-center">
+<div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2 text-center">
 
 <table>
 <tbody>
@@ -116,7 +113,7 @@ const placeHolderObj4="Mayer";
     </tr>
     <tr>
         <td>
-            <small>Rank: {placeHolderObj2}</small>
+            <small>Rank: {item.rank}</small>
         </td>
     </tr>
 </tbody>
@@ -128,34 +125,31 @@ const placeHolderObj4="Mayer";
 <hr/>
 
 <div className="row">
-<div className="col-md-4"><Button variant="success">Vote</Button>{' '}</div>
-<div className="col-md-4"><Button variant="primary">Share</Button>{' '}</div>
-<div className="col-md-4"><Button variant="danger">Claim</Button>{' '}</div>
+
+<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
 
     </div>
-    <br />
-    </center>
-    
+   
     ))}
+    </div>
       </div>
-      <div className="col-12">
+      <div className="row ">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       {senatorCategories.map(item=>(
-        <center>
-   
-    <div className="border rounded border-dark w-50 pb-2">
+   <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pr-5 pb-2 pt-2">
+              <div className="row mx-auto">
+                <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
+                
 
-<div className="row mx-auto"  >
-
-<div className="col-md-9 text-left" >
-
-<h1 className="font-style "><i> {item.bill_name}</i></h1>
-<h3><i>Bill Number: {item.bill_number}</i></h3>
-<p>Bill Description: {item.bill_description}</p>
+<h3 className="font-style "><i> {item.bill_name}</i></h3>
+<h4><i>Bill Number: {item.bill_number}</i></h4>
+<p>Bill Description: <br/> {item.bill_description}</p>
 
 </div>
-<div className="col-md-3 text-center">
+<div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2 text-center">
 
 <table>
 <tbody>
@@ -171,7 +165,7 @@ const placeHolderObj4="Mayer";
     </tr>
     <tr>
         <td>
-            <small>Rank: {placeHolderObj3}</small>
+            <small>Rank: {item.rank}</small>
         </td>
     </tr>
 </tbody>
@@ -183,34 +177,31 @@ const placeHolderObj4="Mayer";
 <hr/>
 
 <div className="row">
-<div className="col-md-4"><Button variant="success">Vote</Button>{' '}</div>
-<div className="col-md-4"><Button variant="primary">Share</Button>{' '}</div>
-<div className="col-md-4"><Button variant="danger">Claim</Button>{' '}</div>
+
+<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
 
     </div>
-    <br />
-    </center>
-    
+   
     ))}
+    </div>
       </div>
-      <div className="col-12">
+      <div className="row ">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       {mayerCategories.map(item=>(
-        <center>
-   
-    <div className="border rounded border-dark w-50 pb-2">
+   <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pr-5 pb-2 pt-2">
+              <div className="row mx-auto">
+                <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
+                
 
-<div className="row mx-auto"  >
-
-<div className="col-md-9 text-left" >
-
-<h1 className="font-style "><i> {item.bill_name}</i></h1>
-<h3><i>Bill Number: {item.bill_number}</i></h3>
-<p>Bill Description: {item.bill_description}</p>
+<h3 className="font-style "><i> {item.bill_name}</i></h3>
+<h4><i>Bill Number: {item.bill_number}</i></h4>
+<p>Bill Description: <br/> {item.bill_description}</p>
 
 </div>
-<div className="col-md-3 text-center">
+<div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2 text-center">
 
 <table>
 <tbody>
@@ -226,7 +217,7 @@ const placeHolderObj4="Mayer";
     </tr>
     <tr>
         <td>
-            <small>Rank: {placeHolderObj4}</small>
+            <small>Rank: {item.rank}</small>
         </td>
     </tr>
 </tbody>
@@ -238,22 +229,25 @@ const placeHolderObj4="Mayer";
 <hr/>
 
 <div className="row">
-<div className="col-md-4"><Button variant="success">Vote</Button>{' '}</div>
-<div className="col-md-4"><Button variant="primary">Share</Button>{' '}</div>
-<div className="col-md-4"><Button variant="danger">Claim</Button>{' '}</div>
+
+<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
 
     </div>
-    <br />
-    </center>
-    
+   
     ))}
-      </div>
-         
     </div>
-</div>
- );
+      </div>
+
+
+
+
+    </div>
+    </div>
+
+  );
 }
 
 ConstitutionPage.propTypes = {

@@ -35,11 +35,14 @@ export function GovernomentPage() {
         className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-2"
         style={{ height: '1000px' }}
       >
-        <div className="row d-flex bg-light">
+        <div className="row text-center">
+          <h4 className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">Elected Government Of The Week</h4>
+          </div>
+        <div className="row d-flex bg-light mt-5">
           
           <div >
             <Card
-              className="ml-2 mb-2 border border-dark"
+              className="ml-5 mb-5 border border-dark"
               style={{ width: '12rem' }}
             >
               <Card.Header className="bg-light">
@@ -52,9 +55,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:</b>
+                  <b>Name:Adil</b>
                   <br />
-                  <b>Rank:</b>
+                  <b>Rank:King</b>
 
                   <br />
                 </Card.Text>
@@ -64,7 +67,7 @@ export function GovernomentPage() {
 
           <div >
             <Card
-              className="ml-2 mb-2 border border-dark"
+              className="ml-5 mb-5 border border-dark"
               style={{ width: '12rem' }}
             >
               <Card.Header className="bg-light">
@@ -77,9 +80,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:</b>
+                  <b>Name:Rizwan</b>
                   <br />
-                  <b>Rank:</b>
+                  <b>Rank:Primenister</b>
 
                   <br />
                 </Card.Text>
@@ -89,7 +92,7 @@ export function GovernomentPage() {
 
           <div >
             <Card
-              className="ml-2 mb-2 border border-dark"
+              className="ml-5 mb-5 border border-dark"
               style={{ width: '12rem' }}
             >
               <Card.Header className="bg-light">
@@ -102,9 +105,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:</b>
+                  <b>Name:Shahid</b>
                   <br />
-                  <b>Rank:</b>
+                  <b>Rank:Senator</b>
 
                   <br />
                 </Card.Text>
@@ -114,7 +117,7 @@ export function GovernomentPage() {
 
           <div >
             <Card
-              className="ml-2 mb-2 border border-dark"
+              className="ml-5 mb-5 border border-dark"
               style={{ width: '12rem' }}
             >
               <Card.Header className="bg-light">
@@ -127,9 +130,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:</b>
+                  <b>Name:Usman</b>
                   <br />
-                  <b>Rank:</b>
+                  <b>Rank:Mayer</b>
 
                   <br />
                 </Card.Text>

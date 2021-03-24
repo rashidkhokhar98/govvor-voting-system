@@ -48,12 +48,12 @@ export function PublicPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {card &&  
-            <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 pb-2 mx-auto px-auto ">
+            <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto px-auto pr-5 pb-2 pt-2">
               <div className="row mx-auto">
                 <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
                   <h3 className="font-style ">
                     
-                      Bill Name:{card.bill_name}
+                      {card.bill_name}
                     
                   </h3>
                   <h4>
@@ -106,7 +106,7 @@ export function PublicPage() {
                 <Button className="btn btn-primary px-auto mx-auto">
                   Share
                 </Button>
-                <Button className="btn btn-danger px-auto mx-auto">
+                <Button className="btn btn-danger px-auto mx-auto" href="/bill">
                   Claim
                 </Button>
               </div>
@@ -117,16 +117,16 @@ export function PublicPage() {
         
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style font-weight-bold text-center">
-              Runners for {placeHolderObj1}
+            <h3 className="font-style text-center">
+              CANDIDATES FOR KING
             </h3>
 
-            <div className="row d-flex bg-light">
+            <div className="row d-flex bg-light mx-auto">
               {kingCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-2 mb-2"
-                    style={{ width: '12rem', border: '1px solid black' }}
+                    className="ml-5 mb-5 border border-dark shadow"
+                    style={{ width: '12rem' }}
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -160,16 +160,17 @@ export function PublicPage() {
         </div>
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style font-weight-bold text-center">
-              Runners for {placeHolderObj2}
+            <h3 className="font-style text-center">
+            CANDIDATES FOR PRIMENISTER
+
             </h3>
 
             <div className="row d-flex bg-light">
               {primenisterCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-2 mb-2"
-                    style={{ width: '12rem', border: '1px solid black' }}
+                    className="ml-5 mb-5 border border-dark shadow"
+                    style={{ width: '12rem'}}
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -204,16 +205,17 @@ export function PublicPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style font-weight-bold text-center">
-              Runners for {placeHolderObj3}
+            <h3 className="font-style text-center">
+            CANDIDATES FOR SENATOR
+
             </h3>
 
             <div className="row d-flex bg-light">
               {senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-2 mb-2"
-                    style={{ width: '12rem', border: '1px solid black' }}
+                    className="ml-5 mb-5 border border-dark shadow"
+                    style={{ width: '12rem'}}
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -248,16 +250,17 @@ export function PublicPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style font-weight-bold text-center">
-              Runners for {placeHolderObj4}
+            <h3 className="font-style text-center">
+            CANDIDATES FOR MAYER
+
             </h3>
 
             <div className="row d-flex bg-light">
               {mayerCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-2 mb-2"
-                    style={{ width: '12rem', border: '1px solid black' }}
+                    className="ml-5 mb-5 border border-dark shadow"
+                    style={{ width: '12rem' }}
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img

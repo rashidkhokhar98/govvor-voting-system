@@ -30,28 +30,28 @@ export function AboutPage() {
         </div>
       </div>
         <div className="row mt-5 mx-auto justify-content-center">
-            <div className="col-6 ">
+            <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 ">
             <table className="table table-striped table-hover table-bordered table-responsive text-center" >
             <thead className="thead-dark" >
                 <tr className="font-style">
-                    <th>Vote</th>
+                    <th >Vote</th>
                     <th colSpan="3">Division</th>
                 </tr>
                 
             </thead>
-            <thead className="thead-light">
+            
             <tr>
-                    <th>Price</th>
-                    <th>Bill Execution</th>
-                    <th>Salary per Electorate</th>
-                    <th>Govvor Service Fee</th>
+                    <td colSpan="1">Price</td>
+                    <td colSpan="1">Bill Execution</td>
+                    <td colSpan="1">Salary per Electorate</td>
+                    <td colSpan="1">Govvor Service Fee</td>
                 </tr>
-            </thead>
+           
                 <tr>
-                    <td>4.99 US Dollars</td>
-                    <td>65%</td>
-                    <td>20%</td>
-                    <td>14%</td>
+                    <td colSpan="1">4.99 US Dollars</td>
+                    <td colSpan="1">65%</td>
+                    <td colSpan="1">20%</td>
+                    <td colSpan="1">14%</td>
                 </tr>
             <tbody>
 
