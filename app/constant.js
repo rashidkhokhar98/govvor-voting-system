@@ -74,13 +74,13 @@ export const ElectionCategories = {
             },
         ]
     },
-    Primenister: {
-        key: "primenister",
+    Prime_menister: {
+        key: "prime_menister",
         categories: [
             {
                 name: 'AdilP01',
                 value: 'adil01',
-                rank: 'Primenister',
+                rank: 'Prime_menister',
                 vote:1,
                 bill_name:"Lorem Ipsum",
                 bill_number:1,
@@ -90,7 +90,7 @@ export const ElectionCategories = {
             {
                 name: 'Adil02',
                 value: 'adil02',
-                rank: 'Primenister',
+                rank: 'Prime_menister',
 
                 vote:2,
                 bill_name:"Lorem Ipsum",
@@ -101,7 +101,7 @@ export const ElectionCategories = {
             {
                 name: 'Adil03',
                 value: 'adil03',
-                rank: 'Primenister',
+                rank: 'Prime_menister',
 
                 vote:3,
                 bill_name:"Lorem Ipsum",
@@ -112,7 +112,7 @@ export const ElectionCategories = {
             {
                 name: 'Adil04',
                 value: 'adil04',
-                rank: 'Primenister',
+                rank: 'Prime_menister',
 
                 vote:4,
                 bill_name:"Lorem Ipsum",
@@ -123,7 +123,7 @@ export const ElectionCategories = {
             {
                 name: 'Adil05',
                 value: 'adil05',
-                rank: 'Primenister',
+                rank: 'Prime_menister',
 
                 vote:5,
                 bill_name:"Lorem Ipsum",
@@ -134,7 +134,7 @@ export const ElectionCategories = {
             {
                 name: 'Adil06',
                 value: 'adil06',
-                rank: 'Primenister',
+                rank: 'Prime_menister',
 
                 vote:6,
                 bill_name:"Lorem Ipsum",
@@ -145,7 +145,7 @@ export const ElectionCategories = {
             { 
             name: 'Adil07',
             value: 'adil07',
-            rank: 'Primenister',
+            rank: 'Prime_menister',
 
             vote:7,
             bill_name:"Lorem Ipsum",
@@ -321,8 +321,8 @@ export const roles = [
         value: "king"
     },
     {
-        name: 'Primenister',
-        value: 'primenister'
+        name: 'Prime_menister',
+        value: 'Prime_menister'
     },
     {
         name: 'Santor',

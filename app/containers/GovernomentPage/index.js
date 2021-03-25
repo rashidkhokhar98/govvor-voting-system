@@ -55,9 +55,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:Adil</b>
+                  Name:Adil
                   <br />
-                  <b>Rank:King</b>
+                 <small> Rank:King</small>
 
                   <br />
                 </Card.Text>
@@ -80,9 +80,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:Rizwan</b>
+                  Name:Rizwan
                   <br />
-                  <b>Rank:Primenister</b>
+                 <small> Rank:Prime_menister</small>
 
                   <br />
                 </Card.Text>
@@ -105,9 +105,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:Shahid</b>
+                  Name:Shahid
                   <br />
-                  <b>Rank:Senator</b>
+                  <small>Rank:Senator</small>
 
                   <br />
                 </Card.Text>
@@ -130,9 +130,9 @@ export function GovernomentPage() {
               </Card.Header>
               <Card.Body>
                 <Card.Text style={{ fontSize: 'medium', lineHeight: '25px' }}>
-                  <b>Name:Usman</b>
+                  Name:Usman
                   <br />
-                  <b>Rank:Mayer</b>
+                  <small>Rank:Mayer</small>
 
                   <br />
                 </Card.Text>

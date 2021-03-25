@@ -12,10 +12,13 @@ import { Button } from 'react-bootstrap';
 import MenuBar from '../../components/MenuBar';
 
 import { ElectionCategories } from '../../constant';
+import CenterModal from '../../components/CenterModal';
 
 export function ElectionsPage() {
+  const [modalShow, setModalShow] = useState(false);
+
   const placeHolderObj1 = 'King';
-  const placeHolderObj2 = 'Primenister';
+  const placeHolderObj2 = 'Prime_menister';
   const placeHolderObj3 = 'Senator';
   const placeHolderObj4 = 'Mayer';
   const [kingCategories, setKingCategories] = useState(
@@ -43,6 +46,10 @@ export function ElectionsPage() {
   };
   return (
     <div className="cntainer-fluid row">
+       <CenterModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" >
         <MenuBar />
       </div>
@@ -105,7 +112,7 @@ export function ElectionsPage() {
                 >
                   Vote
                 </Button>
-                <Button className="btn btn-primary px-auto mx-auto">
+                <Button className="btn btn-primary px-auto mx-auto" onClick={() => setModalShow(true)}>
                   Share
                 </Button>
                 <Button className="btn btn-danger px-auto mx-auto" href="/bill">
@@ -163,7 +170,7 @@ export function ElectionsPage() {
         <div className="row mt-2">
           <div className="col-12">
             <h3 className="font-style text-center">
-            CANDIDATES FOR PRIMENISTER
+            CANDIDATES FOR PRIME_MENISTER
 
             </h3>
 
@@ -189,7 +196,7 @@ export function ElectionsPage() {
                         <b>Name:</b>
                         {item.name} <br />
                         <b>Rank:</b>
-                        {item.rank}
+                        <small>{item.rank}</small>
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
                         <b>Votes:</b>

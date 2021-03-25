@@ -12,11 +12,13 @@ import { compose } from 'redux';
 import MenuBar from '../../components/MenuBar'
 import { Button } from "react-bootstrap";
 import {ElectionCategories} from '../../constant';
+import CenterModal from '../../components/CenterModal';
 
 
 export function ConstitutionPage() {
+    const [modalShow, setModalShow] = useState(false);
   const placeHolderObj1="King";
-const placeHolderObj2="Primenister";
+const placeHolderObj2="Prime_menister";
 const placeHolderObj3="Senator";
 const placeHolderObj4="Mayer";
  const[kingCategories, setKingCategories]=useState(ElectionCategories[placeHolderObj1].categories || []);
@@ -26,6 +28,10 @@ const placeHolderObj4="Mayer";
 
  return (
     <div className="cntainer-fluid row " >
+        <CenterModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark ">
       <MenuBar/>
     </div>
@@ -74,7 +80,7 @@ const placeHolderObj4="Mayer";
 
 <div className="row">
 
-<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-primary px-auto mx-auto" onClick={() => setModalShow(true)}>Share</Button>
 <Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
@@ -126,7 +132,7 @@ const placeHolderObj4="Mayer";
 
 <div className="row">
 
-<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-primary px-auto mx-auto" onClick={() => setModalShow(true)}>Share</Button>
 <Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
@@ -178,7 +184,7 @@ const placeHolderObj4="Mayer";
 
 <div className="row">
 
-<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-primary px-auto mx-auto" onClick={() => setModalShow(true)}>Share</Button>
 <Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 
@@ -230,7 +236,7 @@ const placeHolderObj4="Mayer";
 
 <div className="row">
 
-<Button className="btn btn-primary px-auto mx-auto">Share</Button>
+<Button className="btn btn-primary px-auto mx-auto" onClick={() => setModalShow(true)}>Share</Button>
 <Button className="btn btn-danger px-auto mx-auto" href="/bill">Claim</Button>
 </div>
 

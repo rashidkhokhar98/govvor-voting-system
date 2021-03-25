@@ -16,7 +16,7 @@ import { Button } from 'react-bootstrap';
 
 export function PublicPage() {
   const placeHolderObj1 = 'King';
-  const placeHolderObj2 = 'Primenister';
+  const placeHolderObj2 = 'Prime_menister';
   const placeHolderObj3 = 'Senator';
   const placeHolderObj4 = 'Mayer';
   const [kingCategories, setKingCategories] = useState(ElectionCategories[placeHolderObj1].categories || []);
@@ -161,7 +161,7 @@ export function PublicPage() {
         <div className="row mt-2">
           <div className="col-12">
             <h3 className="font-style text-center">
-            CANDIDATES FOR PRIMENISTER
+            CANDIDATES FOR PRIME_MENISTER
 
             </h3>
 
@@ -187,7 +187,7 @@ export function PublicPage() {
                         <b>Name:</b>
                         {item.name} <br />
                         <b>Rank:</b>
-                        {item.rank}
+                        <small>{item.rank}</small>
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
                         <b>Votes:</b>

@@ -24,6 +24,7 @@ const schema = yup.object().shape({
   email: yup.string().required(),
   password: yup.string().required(),
   city: yup.string().required(),
+  state: yup.string().required(),
   role: yup.string().required(),
 });
 
@@ -46,7 +47,7 @@ export function SignupPage() {
   }
   return (
     <div className="container-fluid ">
-    <div className="container bg-dark  pb-3 pt-3 border mt-5 text-light rounded">
+    <div className="container bg-dark  pb-3 pt-3 border mt-5 mb-5 text-light rounded">
       <form onSubmit={handleSubmit(onSubmitt)}>
       
         <div className="row">
@@ -119,6 +120,23 @@ export function SignupPage() {
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <label htmlFor="state">Enter State Name</label>
+            <input
+              type="text"
+              name="state"
+              className="form-control"
+              id="state"
+              placeholder="Enter State"
+              ref={register}
+            />
+            <div style={{ color: 'red' }}>
+              {' '}
+              {errors && errors.state && '* State is required field'}
+            </div>
+        </div>
+          </div>
 
         <div className="row">
           <div className="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
