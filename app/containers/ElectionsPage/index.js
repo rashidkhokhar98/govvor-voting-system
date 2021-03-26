@@ -62,18 +62,9 @@ export function ElectionsPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {card && (
-              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto px-auto pr-5 pb-2 pt-2">
+              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
                 <div className="row mx-auto">
-                  <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
-                    <h3 className="font-style ">{card.bill_name}</h3>
-                    <h4>Bill Number:{card.bill_number}</h4>
-                    <p>
-                      Bill Description:
-                      <br />
-                      {card.bill_description}
-                    </p>
-                  </div>
-                  <div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2 text-center">
+                  <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
                       <tbody>
                         <tr>
@@ -104,13 +95,22 @@ export function ElectionsPage() {
                       </tbody>
                     </table>
                   </div>
+                  <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                    <h3 className="font-style ">{card.bill_name}</h3>
+                    <h4>Bill Number:{card.bill_number}</h4>
+                    <p>
+                      Bill Description:
+                      <br />
+                      {card.bill_description}
+                    </p>
+                  </div>
                 </div>
                 <hr />
 
                 <div className="row">
                   {stripeShow ? (
                     <StripeCheckout
-                    className="px-auto mx-auto"
+                      className="px-auto mx-auto"
                       token={onToken}
                       stripeKey="pk_test_51ICk33BW8V4hKaTPZuaaXpps2drWjjMXobfOy9pwGcQBrEb9fzb3xvtjdEr9TPsQFlEONX9hTI93IQLXDWQO6qe000sp4KoAsP"
                       name="Govvor.com"

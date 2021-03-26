@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -6,9 +5,8 @@ import { compose } from 'redux';
 
 // import Bill from "../../components/Bill";
 // import CompactProfile from "../../components/CompactProfile";
-import { Card } from "react-bootstrap";
-import MenuBar from "../../components/MenuBar";
-
+import { Card } from 'react-bootstrap';
+import MenuBar from '../../components/MenuBar';
 
 import { ElectionCategories } from '../../constant';
 import { Button } from 'react-bootstrap';
@@ -19,12 +17,18 @@ export function PublicPage() {
   const placeHolderObj2 = 'Prime_menister';
   const placeHolderObj3 = 'Senator';
   const placeHolderObj4 = 'Mayer';
-  const [kingCategories, setKingCategories] = useState(ElectionCategories[placeHolderObj1].categories || []);
-  const [primenisterCategories, setPrimenisterCategories] = useState(ElectionCategories[placeHolderObj2].categories || []);
+  const [kingCategories, setKingCategories] = useState(
+    ElectionCategories[placeHolderObj1].categories || [],
+  );
+  const [primenisterCategories, setPrimenisterCategories] = useState(
+    ElectionCategories[placeHolderObj2].categories || [],
+  );
   const [senatorCategories, setsenatorCategories] = useState(
     ElectionCategories[placeHolderObj3].categories || [],
   );
-  const [mayerCategories, setMayerCategories] = useState(ElectionCategories[placeHolderObj4].categories || []);
+  const [mayerCategories, setMayerCategories] = useState(
+    ElectionCategories[placeHolderObj4].categories || [],
+  );
   const [card, setCard] = useState('');
   const [disableVote, setDisableVote] = useState(false);
   const handleCategoryItem = value => {
@@ -41,61 +45,59 @@ export function PublicPage() {
 
   return (
     <div className="cntainer-fluid row">
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" >
+      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3 mb-5 ">
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            {card &&  
-            <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto px-auto pr-5 pb-2 pt-2">
-              <div className="row mx-auto">
-                <div className="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-10 text-left">
-                  <h3 className="font-style ">
-                    
-                      {card.bill_name}
-                    
-                  </h3>
-                  <h4>
-                    Bill Number:{card.bill_number}
-                  </h4>
-                  <p>Bill Description:<br />{card.bill_description}</p>
+            {card && (
+              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
+                <div className="row mx-auto">
+                  <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img
+                              src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                              alt="Profile Pic"
+                              width="80em"
+                              height="80em"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small>Name:{card.name}</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small>Votes:{card.vote}</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small>Rank:{card.rank}</small>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                    <h3 className="font-style ">{card.bill_name}</h3>
+                    <h4>Bill Number:{card.bill_number}</h4>
+                    <p>
+                      Bill Description:
+                      <br />
+                      {card.bill_description}
+                    </p>
+                  </div>
                 </div>
-                <div className="col-4 col-sm-4 col-md-3 col-lg-3 col-xl-2 text-center">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <img
-                            src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
-                            alt="Profile Pic"
-                            width="80em"
-                            height="80em"
-                          />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <small>Name:{card.name}</small>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <small>Votes:{card.vote}</small>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <small>Rank:{card.rank}</small>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <hr />
+                <hr />
 
-            {/*   <div className="row">
+                {/*   <div className="row">
                 <Button
                   className="btn btn-success px-auto mx-auto"
                   onClick={() => addVote(card)}
@@ -110,16 +112,14 @@ export function PublicPage() {
                   Claim
                 </Button>
               </div>*/}
-            </div>
-            }
+              </div>
+            )}
           </div>
         </div>
-        
+
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">
-              CANDIDATES FOR KING
-            </h3>
+            <h3 className="font-style text-center">CANDIDATES FOR KING</h3>
 
             <div className="row d-flex bg-light mx-auto">
               {kingCategories.map(item => (
@@ -161,8 +161,7 @@ export function PublicPage() {
         <div className="row mt-2">
           <div className="col-12">
             <h3 className="font-style text-center">
-            CANDIDATES FOR PRIME_MENISTER
-
+              CANDIDATES FOR PRIME_MENISTER
             </h3>
 
             <div className="row d-flex bg-light">
@@ -170,7 +169,7 @@ export function PublicPage() {
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
                     className="ml-5 mb-5 border border-dark shadow"
-                    style={{ width: '12rem'}}
+                    style={{ width: '12rem' }}
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -205,17 +204,14 @@ export function PublicPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">
-            CANDIDATES FOR SENATOR
-
-            </h3>
+            <h3 className="font-style text-center">CANDIDATES FOR SENATOR</h3>
 
             <div className="row d-flex bg-light">
               {senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
                     className="ml-5 mb-5 border border-dark shadow"
-                    style={{ width: '12rem'}}
+                    style={{ width: '12rem' }}
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -250,10 +246,7 @@ export function PublicPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">
-            CANDIDATES FOR MAYER
-
-            </h3>
+            <h3 className="font-style text-center">CANDIDATES FOR MAYER</h3>
 
             <div className="row d-flex bg-light">
               {mayerCategories.map(item => (
