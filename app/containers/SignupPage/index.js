@@ -26,6 +26,7 @@ const schema = yup.object().shape({
   city: yup.string().required(),
   state: yup.string().required(),
   role: yup.string().required(),
+  image:yup.string().required(),
 });
 
 export function SignupPage() {
@@ -35,13 +36,13 @@ export function SignupPage() {
 
   const [formData, setFormData] = useState('');
   const [country, setCountry] = useState('');
-
   const [role, setRole]=useState(roles ||[]);
 
   const onSubmitt = data => {
     console.log('data', data);
     console.log('country', country);
     
+
     setFormData({ ...data });
     reset();
   }
@@ -100,7 +101,6 @@ export function SignupPage() {
               ref={register}
             />
             <div style={{ color: 'red' }}>
-              {' '}
               {errors && errors.password && '* Password is required'}
             </div>
           </div>
@@ -115,7 +115,7 @@ export function SignupPage() {
               ref={register}
             />
             <div style={{ color: 'red' }}>
-              {' '}
+            
               {errors && errors.city && '* City is required'}
             </div>
           </div>
@@ -132,7 +132,7 @@ export function SignupPage() {
               ref={register}
             />
             <div style={{ color: 'red' }}>
-              {' '}
+              
               {errors && errors.state && '* State is required field'}
             </div>
         </div>
@@ -153,7 +153,7 @@ export function SignupPage() {
               ))}
             </select>
             <div style={{ color: 'red' }}>
-              {' '}
+             
               {errors && errors.role && '* Role is required field'}
             </div>
         </div>
@@ -168,6 +168,21 @@ export function SignupPage() {
             />
           </div>
         </div>
+        <div className="row">
+          <div className="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <label htmlFor="image">Select your avatar : </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              ref={register}
+            />
+            <div style={{ color: 'red' }}>
+              
+              {errors && errors.state && '* Upload your picture '}
+            </div>
+        </div>
+          </div>
         <div className="row ">
           <div className="col text-center">
               <button type="submit" className="btn btn-primary">

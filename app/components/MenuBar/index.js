@@ -14,24 +14,29 @@ function MenuBar() {
   return (
     <div className="container-fluid ">
   
-   <nav class="flex-column ">  
-       <ul className=" navbar-nav ">
-      <li className="nav-item ">
+   <nav class="flex-column">  
+       <ul className=" navbar-nav " >
+       <li className="nav-item" >
+      <Link  className="nav-link text-light" to="/">
+          Home
+      </Link>
+      </li>
+      <li className="nav-item " >
       <Link  className="nav-link text-light" to="/public">
           Public
       </Link>
       </li>
-      <li className="nav-item">
-      <Link className="nav-link text-light pl-0" to="/governoment">
+      <li className="nav-item" >
+      <Link className=" nav-link text-light pl-0" to="/governoment">
           Government
       </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item" >
       <Link className="nav-link text-light pl-0" to="/election">
        Elections
       </Link>
       </li>
-      <li className="nav-item">
+      <li className="nav-item" >
       <Link className="nav-link text-light pl-0" to="/constitution">
       Constitution
       </Link>

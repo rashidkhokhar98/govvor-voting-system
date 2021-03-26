@@ -96,7 +96,7 @@ export function GovernomentPage() {
             govt.map(item => (
               <div onClick={() => handleCategoryItem(item)}>
                 <Card
-                  className="ml-5 mb-5 border border-dark"
+                  className="ml-5 mb-5 border shadow border-dark"
                   style={{ width: '12rem' }}
                 >
                   <Card.Header className="bg-light">
