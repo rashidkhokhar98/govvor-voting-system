@@ -47,10 +47,10 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-        <nav className="navbar navbar-expand-lg" style={{backgroundColor:  'rgb(25,39,52)'}}>
+        <nav className="navbar navbar-expand-lg" style={{backgroundColor:  'rgb(79, 235, 227)'}}>
     <div className="container-fluid">
       <div className="navbar-header">
-        <a className="navbar-brand text-white" href="/">Govvor.com</a>
+        <a className="navbar-brand text-white" href="/">Govvor</a>
       </div>
       <div>
       <a className="btn btn-success my-2 my-sm-0  mr-2" href="/Signup" >SignUp</a>
@@ -60,9 +60,9 @@ const render = messages => {
   </nav>
           <App />
           <footer className="footer">
-  <div className="text-center p-3 text-white" style={{backgroundColor: 'rgb(25,39,52)'}}>
+  <div className="text-center p-3 text-dark" style={{backgroundColor: 'rgb(79, 235, 227)'}}>
     © 2021 Copyright: {' '}
-    <a className="text-white" href="/">Govvor.com</a>
+    <a className="text-dark" href="/">Govvor.com</a>
   </div>
 </footer>
         </ConnectedRouter>

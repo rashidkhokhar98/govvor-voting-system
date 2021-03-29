@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <div className="cntainer-fluid row ">
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark ">
+      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{ height: '1500px' }}>
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
@@ -54,6 +54,25 @@ export default function HomePage() {
           </div>
         </nav>
         <hr />
+<div className="home border border-light ">
+<div className="diamond">
+  <h1 className=" pt-5 text-center text-dark">
+  Government
+  </h1>
+  </div>
+  <div className="triangle-left ">
+    <h1 className="pt-5 text-left text-light ">
+  Elections
+  </h1>
+  </div>
+  <div className="triangle-right">
+  <h1 className="pt-5 text-right text-dark">
+  Policy
+  </h1>
+  </div>
+</div>
+
+        {/* 
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {kingCategories.map(item => (
@@ -310,6 +329,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+        */}
       </div>
     </div>
   );
