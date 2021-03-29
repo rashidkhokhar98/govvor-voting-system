@@ -43,7 +43,8 @@ export function ConstitutionPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {kingCategories.map(item => (
-              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
+              <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -73,18 +74,19 @@ export function ConstitutionPage() {
                   </div>
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style ">
+                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
                       <i> {item.bill_name}</i>
                     </h3>
                     <h4>
                       <i>Bill Number: {item.bill_number}</i>
                     </h4>
                     <p>
-                      Bill Description: <br /> {item.bill_description}
+                      {item.bill_description}
                     </p>
                   </div>
                 </div>
-                <hr />
+                <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
+
 
                 <div className="row">
                   <Button
@@ -107,7 +109,8 @@ export function ConstitutionPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {primenisterCategories.map(item => (
-              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
+              <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -137,18 +140,19 @@ export function ConstitutionPage() {
                   </div>
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style ">
+                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
                       <i> {item.bill_name}</i>
                     </h3>
                     <h4>
                       <i>Bill Number: {item.bill_number}</i>
                     </h4>
                     <p>
-                      Bill Description: <br /> {item.bill_description}
+                     {item.bill_description}
                     </p>
                   </div>
                 </div>
-                <hr />
+                <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
+
 
                 <div className="row">
                   <Button
@@ -171,7 +175,8 @@ export function ConstitutionPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {senatorCategories.map(item => (
-              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
+              <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -201,18 +206,19 @@ export function ConstitutionPage() {
                   </div>
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style ">
+                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
                       <i> {item.bill_name}</i>
                     </h3>
                     <h4>
                       <i>Bill Number: {item.bill_number}</i>
                     </h4>
                     <p>
-                      Bill Description: <br /> {item.bill_description}
+                     {item.bill_description}
                     </p>
                   </div>
                 </div>
-                <hr />
+                <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
+
 
                 <div className="row">
                   <Button
@@ -235,7 +241,8 @@ export function ConstitutionPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {mayerCategories.map(item => (
-              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
+              <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -265,18 +272,19 @@ export function ConstitutionPage() {
                   </div>
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style ">
+                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
                       <i> {item.bill_name}</i>
                     </h3>
                     <h4>
                       <i>Bill Number: {item.bill_number}</i>
                     </h4>
                     <p>
-                      Bill Description: <br /> {item.bill_description}
+                     {item.bill_description}
                     </p>
                   </div>
                 </div>
-                <hr />
+                <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
+
 
                 <div className="row">
                   <Button

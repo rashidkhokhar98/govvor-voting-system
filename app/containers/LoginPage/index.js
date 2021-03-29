@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 const schema = yup.object().shape({
   email: yup.string().required(),
   password: yup.string().required(),
-  text: yup.string().required(),
+ 
  
 });
 export function LoginPage() {

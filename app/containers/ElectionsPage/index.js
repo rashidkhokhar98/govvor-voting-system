@@ -62,7 +62,8 @@ export function ElectionsPage() {
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {card && (
-              <div className="border rounded border-dark col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2">
+              <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -96,16 +97,16 @@ export function ElectionsPage() {
                     </table>
                   </div>
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style ">{card.bill_name}</h3>
+                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>{card.bill_name}</h3>
                     <h4>Bill Number:{card.bill_number}</h4>
                     <p>
-                      Bill Description:
-                      <br />
+                    
                       {card.bill_description}
                     </p>
                   </div>
                 </div>
-                <hr />
+        <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
+                
 
                 <div className="row">
                   {stripeShow ? (
@@ -148,14 +149,15 @@ export function ElectionsPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">CANDIDATES FOR KING</h3>
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR KING</h3>
 
             <div className="row d-flex bg-light mx-auto">
               {kingCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-5 mb-5 border border-dark shadow"
-                    style={{ width: '12rem' }}
+                    className="ml-5 mb-5 shadow"
+                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
+                    
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -189,7 +191,7 @@ export function ElectionsPage() {
         </div>
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>
               CANDIDATES FOR PRIME_MENISTER
             </h3>
 
@@ -197,8 +199,9 @@ export function ElectionsPage() {
               {primenisterCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-5 mb-5 border border-dark shadow"
-                    style={{ width: '12rem' }}
+                    className="ml-5 mb-5 shadow"
+                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
+                    
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -233,14 +236,15 @@ export function ElectionsPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">CANDIDATES FOR SENATOR</h3>
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR SENATOR</h3>
 
             <div className="row d-flex bg-light">
               {senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-5 mb-5 border border-dark shadow"
-                    style={{ width: '12rem' }}
+                    className="ml-5 mb-5 shadow"
+                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
+                    
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
@@ -275,14 +279,15 @@ export function ElectionsPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center">CANDIDATES FOR MAYER</h3>
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR MAYER</h3>
 
             <div className="row d-flex bg-light">
               {mayerCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-5 mb-5 border border-dark shadow"
-                    style={{ width: '12rem' }}
+                    className="ml-5 mb-5 shadow"
+                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
+                    
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img

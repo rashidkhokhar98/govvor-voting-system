@@ -21,11 +21,11 @@ export function AboutPage() {
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
         <div className="row mt-5">
           <div className="col-12">
-            <h2 className="font-weight-bold text-center text-dark">About Us</h2>
+            <h2 className="font-weight-bold text-center" style={{color: 'rgb(153,50,204)'}}>About Us</h2>
           </div>
         </div>
         <div className="row mt-5 mx-auto mr-2 px-auto text-justify">
-          <div className="col-12 font-weight-bold ">
+          <div className="col-12">
             
               Voting fee is USD $4.99 per vote, up to $450 Claims / all funding
               to a bill via payed voted will be destributed as per 60% to Bill

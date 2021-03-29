@@ -14,7 +14,7 @@ function MenuBar() {
   return (
     <div className="container-fluid ">
   
-   <nav class="flex-column">  
+   <nav className="flex-column">  
        <ul className=" navbar-nav " >
        <li className="nav-item" >
       <Link  className="nav-link text-light" to="/">
@@ -27,7 +27,7 @@ function MenuBar() {
       </Link>
       </li>
       <li className="nav-item" >
-      <Link className=" nav-link text-light pl-0" to="/governoment">
+      <Link className=" nav-link text-light pl-0" to="/government">
           Government
       </Link>
       </li>

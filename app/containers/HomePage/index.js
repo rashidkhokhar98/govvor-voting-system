@@ -35,14 +35,14 @@ export default function HomePage() {
   return (
     <div className="cntainer-fluid row ">
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{ height: '1500px' }}>
+      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{ height: '1000px' }}>
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand text-dark font-weight-bold" href="/">
+              <a className="navbar-brand font-weight-bold" style={{color: 'rgb(153,50,204)'}} href="/">
                 Welcome!
               </a>
             </div>
@@ -53,22 +53,28 @@ export default function HomePage() {
             </div>
           </div>
         </nav>
-        <hr />
+        <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
 <div className="home border border-light ">
 <div className="diamond">
-  <h1 className=" pt-5 text-center text-dark">
+  <a href="government">
+  <h4 className=" pt-5 text-center text-dark">
   Government
-  </h1>
+  </h4>
+  </a>
   </div>
   <div className="triangle-left ">
-    <h1 className="pt-5 text-left text-light ">
+    <a href="/election">
+    <h4 className="pt-5 text-left text-light ">
   Elections
-  </h1>
+  </h4>
+  </a>
   </div>
   <div className="triangle-right">
-  <h1 className="pt-5 text-right text-dark">
+    <a href="/constitution">
+  <h4 className="pt-5 text-right text-dark">
   Policy
-  </h1>
+  </h4>
+  </a>
   </div>
 </div>
 
