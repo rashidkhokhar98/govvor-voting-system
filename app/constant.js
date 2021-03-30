@@ -3,7 +3,7 @@ export const ElectionCategories = {
         key: "king",
         categories: [
             {
-                name: 'AdilK01',
+                name: 'RAdilK01',
                 value: 'adil01',
                 rank: 'King',
                 vote:1,
@@ -78,7 +78,7 @@ export const ElectionCategories = {
         key: "prime_menister",
         categories: [
             {
-                name: 'AdilP01',
+                name: 'RAdilP01',
                 value: 'adil01',
                 rank: 'Prime_menister',
                 vote:1,
@@ -160,7 +160,7 @@ export const ElectionCategories = {
         key: "senator",
         categories: [
             {
-                name: 'AdilS01',
+                name: 'RAdilS01',
                 value: 'adil01',
                 rank: 'Senator',
 
@@ -239,7 +239,7 @@ export const ElectionCategories = {
         key: "mayer",
         categories: [
             {
-                name: 'AdilM01',
+                name: 'RAdilM01',
                 value: 'adil01',
                 rank: 'Mayer',
                 vote:1,

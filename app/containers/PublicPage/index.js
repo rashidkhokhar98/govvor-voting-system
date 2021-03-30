@@ -7,7 +7,7 @@ import { compose } from 'redux';
 // import CompactProfile from "../../components/CompactProfile";
 import { Card } from 'react-bootstrap';
 import MenuBar from '../../components/MenuBar';
-
+import { Search } from 'react-bootstrap-icons';
 import { ElectionCategories } from '../../constant';
 import { Button } from 'react-bootstrap';
 // import Avatar from '../../images/User-Avatar.png';
@@ -31,6 +31,43 @@ export function PublicPage() {
   );
   const [card, setCard] = useState('');
   const [disableVote, setDisableVote] = useState(false);
+
+  const [searchText, setSearchText] = useState('');
+  
+  const search = value => {
+    setSearchText(value);
+    const updatedKing =
+    kingCategories &&
+    kingCategories.length > 0 &&
+    kingCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+    setKingCategories(updatedKing);
+
+    const updatedPrimenister =
+    primenisterCategories &&
+    primenisterCategories.length > 0 &&
+    primenisterCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+    setPrimenisterCategories(updatedPrimenister);
+
+    const updatedSenator =
+    senatorCategories &&
+    senatorCategories.length > 0 &&
+    senatorCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+    setsenatorCategories(updatedSenator);
+
+    const updatedMayer =
+    mayerCategories &&
+    mayerCategories.length > 0 &&
+    mayerCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+    setMayerCategories(updatedMayer);
+
+   if (!value) {
+     setKingCategories( ElectionCategories[placeHolderObj1].categories);
+     setPrimenisterCategories( ElectionCategories[placeHolderObj2].categories);
+     setsenatorCategories( ElectionCategories[placeHolderObj3].categories);
+     setMayerCategories( ElectionCategories[placeHolderObj4].categories);
+  }
+  };
+
   const handleCategoryItem = value => {
     // e.preventDefault();
     setCard(value);
@@ -45,10 +82,28 @@ export function PublicPage() {
 
   return (
     <div className="cntainer-fluid row">
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
+      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" style={{ minHeight: '1000px' }}>
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3 mb-5 ">
+     
+      <div className="row  ">
+          <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
+      <div className="form-group has-search">
+   
+    <Search className="form-control-feedback pt-2 pb-2"/>
+    <input type="Search" className="form-control" placeholder="Search Candidates.."
+     aria-label="Search"
+     value={searchText}
+     aria-describedby="search-addon"
+     onChange={e => search(e.target.value)}
+    />
+  
+   
+  </div>
+  </div>
+  </div>
+  
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {card && (
@@ -71,17 +126,18 @@ export function PublicPage() {
                         </tr>
                         <tr>
                           <td>
-                            <small>Name:{card.name}</small>
+                            <small>{card.name}</small>
+                          </td>
+                        </tr>
+                       
+                        <tr>
+                          <td>
+                            <small>{card.rank}</small>
                           </td>
                         </tr>
                         <tr>
                           <td>
                             <small>Votes:{card.vote}</small>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <small>Rank:{card.rank}</small>
                           </td>
                         </tr>
                       </tbody>
@@ -122,7 +178,7 @@ export function PublicPage() {
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR KING</h3>
 
             <div className="row d-flex bg-light mx-auto">
-              {kingCategories.map(item => (
+              {kingCategories && kingCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
                     className="ml-5 mb-5 shadow"
@@ -140,13 +196,14 @@ export function PublicPage() {
                       <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                        <b>Name:</b>
+                       
                         {item.name} <br />
-                        <b>Rank:</b>
-                        {item.rank}
+                       
+                        {item.rank} 
+                        
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        <b>Votes:</b>
+                        Votes:
                         {item.vote}
                       </Card.Title>
                     </Card.Body>
@@ -165,7 +222,7 @@ export function PublicPage() {
             </h3>
 
             <div className="row d-flex bg-light">
-              {primenisterCategories.map(item => (
+              {primenisterCategories && primenisterCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
                     className="ml-5 mb-5 shadow"
@@ -187,13 +244,13 @@ export function PublicPage() {
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                         
                       >
-                        <b>Name:</b>
+                      
                         {item.name} <br />
-                        <b>Rank:</b>
-                        <small>{item.rank}</small>
+                      
+                        {item.rank}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        <b>Votes:</b>
+                        Votes:
                         {item.vote}
                       </Card.Title>
                     </Card.Body>
@@ -211,7 +268,7 @@ export function PublicPage() {
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR SENATOR</h3>
 
             <div className="row d-flex bg-light">
-              {senatorCategories.map(item => (
+              {senatorCategories && senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
                     className="ml-5 mb-5 shadow"
@@ -230,13 +287,13 @@ export function PublicPage() {
                       <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                        <b>Name:</b>
+                       
                         {item.name} <br />
-                        <b>Rank:</b>
+                        
                         {item.rank}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        <b>Votes:</b>
+                        Votes:
                         {item.vote}
                       </Card.Title>
                     </Card.Body>
@@ -254,7 +311,7 @@ export function PublicPage() {
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR MAYER</h3>
 
             <div className="row d-flex bg-light">
-              {mayerCategories.map(item => (
+              {mayerCategories && mayerCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
                     className="ml-5 mb-5 shadow"
@@ -273,13 +330,13 @@ export function PublicPage() {
                       <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                        <b>Name:</b>
+                        
                         {item.name} <br />
-                        <b>Rank:</b>
+                        
                         {item.rank}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        <b>Votes:</b>
+                        Votes:
                         {item.vote}
                       </Card.Title>
                     </Card.Body>

@@ -14,7 +14,7 @@ export function AboutPage() {
     <div className="cntainer-fluid row " >
       <div
         className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark"
-        style={{ height: '1500px' }}
+        style={{ minHeight: '1000px' }}
       >
         <MenuBar />
       </div>

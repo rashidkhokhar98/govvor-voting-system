@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <div className="cntainer-fluid row ">
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{ height: '1000px' }}>
+      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{ minHeight: '1000px' }}>
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
@@ -56,7 +56,7 @@ export default function HomePage() {
         <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
 <div className="home border border-light ">
 <div className="diamond">
-  <a href="government">
+  <a className="" href="/government">
   <h4 className=" pt-5 text-center text-dark">
   Government
   </h4>

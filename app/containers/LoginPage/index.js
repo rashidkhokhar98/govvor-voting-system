@@ -34,7 +34,7 @@ export function LoginPage() {
   };
   return (
     <div className="cntainer-fluid row " >
-    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{height: '1000px' }}>
+    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{minHeight: '1000px' }}>
       <MenuBar/>
     </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">

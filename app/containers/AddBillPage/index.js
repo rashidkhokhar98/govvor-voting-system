@@ -34,12 +34,14 @@ export function AddBillPage() {
   };
   return (
     <div className="cntainer-fluid row " >
-    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{height: '1000px' }}>
+    <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{minHeight: '1000px' }}>
       <MenuBar/>
     </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
     <div className="row justify-content-center ">
-    <div className="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 bg-dark  pb-3 pt-3 mt-2 border text-light rounded ">
+    <div className="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 pb-3 pt-3 mt-5"
+    style={{border:'2px solid rgb(79, 235, 227)', borderRadius: '5px', color: 'rgb(153,50,204)'}}
+    >
       <form onSubmit={handleSubmit(onSubmitt)}>
       
         <div className="row">
