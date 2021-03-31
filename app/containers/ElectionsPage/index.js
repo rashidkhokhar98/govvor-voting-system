@@ -10,6 +10,7 @@ import { Button } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
 import MenuBar from '../../components/MenuBar';
+import { Modal } from "react-bootstrap";
 
 import { ElectionCategories } from '../../constant';
 import CenterModal from '../../components/CenterModal';
@@ -17,6 +18,7 @@ import StripeCheckout from 'react-stripe-checkout';
 
 export function ElectionsPage() {
   const [modalShow, setModalShow] = useState(false);
+  const [cardShow, setCardShow] = useState(false);
   const [stripeShow, setStripeShow] = useState(false);
   const [product] = React.useState({
     name: 'Govvor.com',
@@ -78,6 +80,7 @@ export function ElectionsPage() {
   };
   const handleCategoryItem = value => {
     setCard(value);
+    setCardShow(true);
   };
   const addVote = cardV => {
     setStripeShow(true);
@@ -111,11 +114,31 @@ export function ElectionsPage() {
   </div>
   </div>
   </div>
+  <Modal
+      show={cardShow}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      
+
+     <Modal.Header >
+     <Modal.Title id="contained-modal-title-vcenter">
+          Selected! 
+        </Modal.Title>
+                   
+     <button type="button" className="close" aria-label="Close" onClick={() => setCardShow(false)}>
+  <span aria-hidden="true">&times;</span>
+</button>
+      
+      </Modal.Header>
+      
+      <Modal.Body >
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {card && (
-              <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
-              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
+              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto px-auto pb-2 pt-2"
+             >
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -185,12 +208,14 @@ export function ElectionsPage() {
                   <Button
                     className="btn btn-primary px-auto mx-auto"
                     onClick={() => setModalShow(true)}
+                   
                   >
                     Share
                   </Button>
                   <Button
                     className="btn btn-danger px-auto mx-auto"
                     href="/bill"
+                    onClick={() => setCardShow(false)}
                   >
                     Claim
                   </Button>
@@ -199,14 +224,19 @@ export function ElectionsPage() {
             )}
           </div>
         </div>
+        </Modal.Body>
+    </Modal>
 
         <div className="row mt-2">
           <div className="col-12">
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR KING</h3>
 
             <div className="row d-flex bg-light mx-auto">
+          {kingCategories && kingCategories.length===0 && <span className="mx-auto">No record exist</span>}
+
               {kingCategories && kingCategories.map(item => (
-                <div onClick={() => handleCategoryItem(item)}>
+                 <div 
+                     onClick={() => handleCategoryItem(item)} >
                   <Card
                     className="ml-5 mb-5 shadow"
                     style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
@@ -249,6 +279,8 @@ export function ElectionsPage() {
             </h3>
 
             <div className="row d-flex bg-light">
+          {primenisterCategories && primenisterCategories.length===0 && <span className="mx-auto">No record exist</span>}
+
               {primenisterCategories && primenisterCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
@@ -292,6 +324,8 @@ export function ElectionsPage() {
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR SENATOR</h3>
 
             <div className="row d-flex bg-light">
+          {senatorCategories && senatorCategories.length===0 && <span className="mx-auto">No record exist</span>}
+
               {senatorCategories && senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
@@ -335,6 +369,8 @@ export function ElectionsPage() {
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR MAYER</h3>
 
             <div className="row d-flex bg-light">
+          {mayerCategories && mayerCategories.length===0 && <span className="mx-auto">No record exist</span>}
+
               {mayerCategories && mayerCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card

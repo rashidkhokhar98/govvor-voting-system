@@ -93,7 +93,10 @@ export function ConstitutionPage() {
   </div>
   </div>
         <div className="row ">
+        {kingCategories && primenisterCategories && senatorCategories && mayerCategories && kingCategories.length===0 && primenisterCategories.length===0 && senatorCategories.length===0 && mayerCategories.length===0 && <span className="mx-auto mt-5">No record exist</span>}
+
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          
             {kingCategories && kingCategories.map(item => (
               <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
               style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>

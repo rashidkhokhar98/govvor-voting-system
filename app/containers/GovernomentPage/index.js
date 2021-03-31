@@ -16,6 +16,8 @@ import { Button } from 'react-bootstrap';
 import { ElectionCategories } from '../../constant';
 import { Card } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
+import { Modal } from "react-bootstrap";
+
 
 
 export function GovernomentPage() {
@@ -130,11 +132,15 @@ export function GovernomentPage() {
   };
 
   const [card, setCard] = useState();
+  const [cardShow, setCardShow] = useState(false);
+
 
   const handleCategoryItem = value => {
     // e.preventDefault();
     setCard(value);
-    console.log(card);
+    setCardShow(true);
+
+    
   };
 
   return (
@@ -167,7 +173,8 @@ export function GovernomentPage() {
             Elected Government Of The Week
           </h4>
         </div>
-        <div className="row d-flex bg-light mt-5">
+        <div className="row d-flex bg-light mt-5 ">
+          {govt && govt.length===0 && <span className="mx-auto">No record exist</span>}
           {govt &&
             govt.map(item => (
               <div onClick={() => handleCategoryItem(item)}>
@@ -203,11 +210,32 @@ export function GovernomentPage() {
             ))}
         </div>
 
+        <Modal
+      show={cardShow}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      
+
+     <Modal.Header >
+     <Modal.Title id="contained-modal-title-vcenter">
+          Selected! 
+        </Modal.Title>
+                   
+     <button type="button" className="close" aria-label="Close" onClick={() => setCardShow(false)}>
+  <span aria-hidden="true">&times;</span>
+</button>
+      
+      </Modal.Header>
+      
+      <Modal.Body >
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             {card && (
-              <div className=" col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
-              style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
+              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto px-auto pb-2 pt-2"
+              
+              >
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
                     <table>
@@ -227,7 +255,7 @@ export function GovernomentPage() {
                             <small>{card.name}</small>
                           </td>
                         </tr>
-                        
+                       
                         <tr>
                           <td>
                             <small>{card.rank}</small>
@@ -242,14 +270,14 @@ export function GovernomentPage() {
                     </table>
                   </div>
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>{card.bill_name}</h3>
+                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}} >{card.bill_name}</h3>
                     <h4>Bill Number:{card.bill_number}</h4>
                     <p>
-                    
                       {card.bill_description}
                     </p>
                   </div>
                 </div>
+              
 
                 {/*   <div className="row">
                 <Button
@@ -270,6 +298,9 @@ export function GovernomentPage() {
             )}
           </div>
         </div>
+
+        </Modal.Body>
+        </Modal>
       </div>
     </div>
   );

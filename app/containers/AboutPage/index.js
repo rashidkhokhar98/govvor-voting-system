@@ -11,7 +11,7 @@ import { compose } from 'redux';
 import MenuBar from '../../components/MenuBar';
 export function AboutPage() {
   return (
-    <div className="cntainer-fluid row " >
+    <div className="cntainer-fluid row ">
       <div
         className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark"
         style={{ minHeight: '1000px' }}
@@ -21,18 +21,22 @@ export function AboutPage() {
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
         <div className="row mt-5">
           <div className="col-12">
-            <h2 className="font-weight-bold text-center" style={{color: 'rgb(153,50,204)'}}>About Us</h2>
+            <h2
+              className="font-weight-bold text-center"
+              style={{ color: 'rgb(153,50,204)' }}
+            >
+              About Us
+            </h2>
           </div>
         </div>
         <div className="row mt-5 mx-auto mr-2 px-auto text-justify">
           <div className="col-12">
-            
-              Voting fee is USD $4.99 per vote, up to $450 Claims / all funding
-              to a bill via payed voted will be destributed as per 60% to Bill
-              execution or a political party that will administer the claims, 20% as Salary per elect representative
-              for their services, and 20% service fee to Govvor (Live Policy
-              Club).
-            
+            Govvor is a political Lottery service, if the bill you voted for
+            loses then your vote will go to the winner. But if the bill you
+            voted for wins then you can claim your share as a voter or as a
+            politician. Voting fee is $4.99 per weekly election and divided by
+            60% as claims by voters, 20% to the elected politicians, and 20%
+            Govvor service fee (political lottery service)
           </div>
         </div>
         <div className="row mt-5 mx-auto justify-content-center">
@@ -62,7 +66,6 @@ export function AboutPage() {
             </table>
           </div>
         </div>
-       
       </div>
     </div>
   );
