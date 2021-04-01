@@ -5,15 +5,15 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Button } from 'react-bootstrap';
 import messages from './messages';
 import MenuBar from '../../components/MenuBar';
-import { Button } from 'react-bootstrap';
 import { ElectionCategories } from '../../constant';
 import CenterModal from '../../components/CenterModal';
 
-export default function HomePage() {
+export default function HomePage({ history }) {
   const [modalShow, setModalShow] = useState(false);
   const placeHolderObj1 = 'King';
   const placeHolderObj2 = 'Prime_menister';
@@ -31,18 +31,29 @@ export default function HomePage() {
   const [mayerCategories, setMayerCategories] = useState(
     ElectionCategories[placeHolderObj4].categories || [],
   );
-
+  useEffect(() => {
+    if (!localStorage.getItem('userInfo')) {
+      history.push('/');
+    }
+  }, []);
   return (
     <div className="cntainer-fluid row ">
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark " style={{ minHeight: '1000px' }}>
+      <div
+        className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark "
+        style={{ minHeight: '1000px' }}
+      >
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
         <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand font-weight-bold" style={{color: 'rgb(153,50,204)'}} href="/">
+              <a
+                className="navbar-brand font-weight-bold"
+                style={{ color: 'rgb(153,50,204)' }}
+                href="/"
+              >
                 Welcome!
               </a>
             </div>
@@ -53,30 +64,24 @@ export default function HomePage() {
             </div>
           </div>
         </nav>
-        <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
-<div className="home border border-light ">
-<div className="diamond">
-  <a className="" href="/government">
-  <h4 className=" pt-5 text-center text-dark">
-  Government
-  </h4>
-  </a>
-  </div>
-  <div className="triangle-left ">
-    <a href="/election">
-    <h4 className="pt-5 text-left text-light ">
-  Elections
-  </h4>
-  </a>
-  </div>
-  <div className="triangle-right">
-    <a href="/constitution">
-  <h4 className="pt-5 text-right text-dark">
-  Policy
-  </h4>
-  </a>
-  </div>
-</div>
+        <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
+        <div className="home border border-light ">
+          <div className="diamond">
+            <a className="" href="/government">
+              <h4 className=" pt-5 text-center text-dark">Government</h4>
+            </a>
+          </div>
+          <div className="triangle-left ">
+            <a href="/election">
+              <h4 className="pt-5 text-left text-light ">Elections</h4>
+            </a>
+          </div>
+          <div className="triangle-right">
+            <a href="/constitution">
+              <h4 className="pt-5 text-right text-dark">Policy</h4>
+            </a>
+          </div>
+        </div>
 
         {/* 
         <div className="row ">
