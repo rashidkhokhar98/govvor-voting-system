@@ -19,7 +19,7 @@ const schema = yup.object().shape({
   email: yup.string().required(),
   password: yup.string().required(),
 });
-export function LoginPage() {
+export function LoginPage({history}) {
   const { register, handleSubmit, reset, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -29,7 +29,8 @@ export function LoginPage() {
   const onSubmitt = data => {
     setFormData({ ...data });
     axios.post('http://localhost:5000/api/v1/users/login', data).then(res => {
-      console.log('res', res.data);
+      localStorage.setItem('userInfo', JSON.stringify(res.data));
+      history.push('/public');
     });
     reset();
   };
