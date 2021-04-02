@@ -15,6 +15,8 @@ import { Search } from 'react-bootstrap-icons';
 
 import { ElectionCategories } from '../../constant';
 import CenterModal from '../../components/CenterModal';
+import Header from '../../components/header/header';
+
 
 export function ConstitutionPage() {
   const [modalShow, setModalShow] = useState(false);
@@ -72,6 +74,8 @@ export function ConstitutionPage() {
   };
 
   return (
+    <>
+    <Header />
     <div className="cntainer-fluid row ">
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
       <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" style={{ minHeight: '1000px' }}>
@@ -361,6 +365,7 @@ export function ConstitutionPage() {
         </div>
       </div>
     </div>
+ </>
   );
 }
 

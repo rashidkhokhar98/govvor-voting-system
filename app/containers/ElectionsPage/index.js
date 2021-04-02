@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -11,6 +11,8 @@ import { Search } from 'react-bootstrap-icons';
 
 import MenuBar from '../../components/MenuBar';
 import { Modal } from "react-bootstrap";
+import Header from '../../components/header/header';
+import axios from 'axios';
 
 import { ElectionCategories } from '../../constant';
 import CenterModal from '../../components/CenterModal';
@@ -25,22 +27,12 @@ export function ElectionsPage() {
     price: 4.99,
     description: 'Vote People For Better',
   });
-  const placeHolderObj1 = 'King';
-  const placeHolderObj2 = 'Prime_menister';
-  const placeHolderObj3 = 'Senator';
-  const placeHolderObj4 = 'Mayer';
-  const [kingCategories, setKingCategories] = useState(
-    ElectionCategories[placeHolderObj1].categories || [],
-  );
-  const [primenisterCategories, setPrimenisterCategories] = useState(
-    ElectionCategories[placeHolderObj2].categories || [],
-  );
-  const [senatorCategories, setsenatorCategories] = useState(
-    ElectionCategories[placeHolderObj3].categories || [],
-  );
-  const [mayerCategories, setMayerCategories] = useState(
-    ElectionCategories[placeHolderObj4].categories || [],
-  );
+
+  const [kingCategories, setKingCategories] = useState([]);
+  const [primenisterCategories, setPrimenisterCategories] = useState([]);
+  const [senatorCategories, setsenatorCategories] = useState([]);
+  const [mayerCategories, setMayerCategories] = useState([]);
+
   const [card, setCard] = useState('');
   const [disableVote, setDisableVote] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -92,7 +84,21 @@ export function ElectionsPage() {
   const onToken = token => {
     console.log('token is', token);
   };
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
+      const { KING, MAYER, PM, SENATOR } = (res && res.data) || {};
+      setKingCategories(KING);
+      setPrimenisterCategories(PM);
+      setsenatorCategories(SENATOR);
+      setMayerCategories(MAYER);
+    });
+  }, []);
+
+
   return (
+    <>
+    <Header />
     <div className="cntainer-fluid row">
       <CenterModal show={modalShow} onHide={() => setModalShow(false)} />
       <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark" style={{ minHeight: '1000px' }}>
@@ -229,17 +235,19 @@ export function ElectionsPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR KING</h3>
-
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>King Candidates</h3>
+            <span>
+              {kingCategories &&
+                kingCategories.length === 0 &&
+                'No Record Found'}
+            </span>
             <div className="row d-flex bg-light mx-auto">
-          {kingCategories && kingCategories.length===0 && <span className="mx-auto">No record exist</span>}
-
               {kingCategories && kingCategories.map(item => (
                  <div 
                      onClick={() => handleCategoryItem(item)} >
                   <Card
                     className="ml-5 mb-5 shadow"
-                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
+                    style={{width: '13rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
                     
                   >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
@@ -251,17 +259,17 @@ export function ElectionsPage() {
                       />
                     </Card.Header>
                     <Card.Body>
-                      <Card.Text
+                    <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                     
-                        {item.name} <br />
-                       
-                        {item.rank}
+                        <b>Name:</b>
+                        {item.fullName} <br />
+                        <b>Rank:</b>
+                        {item.role}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        Votes:
-                        {item.vote}
+                        <b>Votes:</b>
+                        {item.vote || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
@@ -275,11 +283,15 @@ export function ElectionsPage() {
         <div className="row mt-2">
           <div className="col-12">
             <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>
-              CANDIDATES FOR PRIME_MENISTER
+              Prime Minister Candidates
             </h3>
-
+            <span>
+              {primenisterCategories &&
+                primenisterCategories.length === 0 &&
+                'No Record Found'}
+            </span>
             <div className="row d-flex bg-light">
-          {primenisterCategories && primenisterCategories.length===0 && <span className="mx-auto">No record exist</span>}
+     
 
               {primenisterCategories && primenisterCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
@@ -297,17 +309,17 @@ export function ElectionsPage() {
                       />
                     </Card.Header>
                     <Card.Body>
-                      <Card.Text
+                    <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                       
-                        {item.name} <br />
-                        
-                        {item.rank}
+                        <b>Name:</b>
+                        {item.fullName} <br />
+                        <b>Rank:</b>
+                        {item.role}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        Votes:
-                        {item.vote}
+                        <b>Votes:</b>
+                        {item.vote || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
@@ -321,10 +333,13 @@ export function ElectionsPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR SENATOR</h3>
-
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>Senator Candidates</h3>
+            <span>
+              {senatorCategories &&
+                senatorCategories.length === 0 &&
+                'No Record Found'}
+            </span>
             <div className="row d-flex bg-light">
-          {senatorCategories && senatorCategories.length===0 && <span className="mx-auto">No record exist</span>}
 
               {senatorCategories && senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
@@ -342,17 +357,17 @@ export function ElectionsPage() {
                       />
                     </Card.Header>
                     <Card.Body>
-                      <Card.Text
+                    <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                        
-                        {item.name} <br />
-                       
-                        {item.rank}
+                        <b>Name:</b>
+                        {item.fullName} <br />
+                        <b>Rank:</b>
+                        {item.role}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        Votes:
-                        {item.vote}
+                        <b>Votes:</b>
+                        {item.vote || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
@@ -366,10 +381,14 @@ export function ElectionsPage() {
 
         <div className="row mt-2">
           <div className="col-12">
-            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>CANDIDATES FOR MAYER</h3>
-
+            <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>Mayer Candidates</h3>
+            <span>
+              {mayerCategories &&
+                mayerCategories.length === 0 &&
+                'No Record Found'}
+            </span>
             <div className="row d-flex bg-light">
-          {mayerCategories && mayerCategories.length===0 && <span className="mx-auto">No record exist</span>}
+         
 
               {mayerCategories && mayerCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
@@ -387,17 +406,17 @@ export function ElectionsPage() {
                       />
                     </Card.Header>
                     <Card.Body>
-                      <Card.Text
+                    <Card.Text
                         style={{ fontSize: 'medium', lineHeight: '25px' }}
                       >
-                       
-                        {item.name} <br />
-                       
-                        {item.rank}
+                        <b>Name:</b>
+                        {item.fullName} <br />
+                        <b>Rank:</b>
+                        {item.role}
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
-                        Votes: 
-                        {item.vote}
+                        <b>Votes:</b>
+                        {item.vote || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
@@ -410,6 +429,7 @@ export function ElectionsPage() {
         </div>
       </div>
     </div>
+  </>
   );
 }
 ElectionsPage.propTypes = {

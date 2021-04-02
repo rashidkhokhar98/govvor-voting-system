@@ -17,6 +17,8 @@ import { Modal } from 'react-bootstrap';
 import { ElectionCategories } from '../../constant';
 import MenuBar from '../../components/MenuBar';
 import CompactProfile from '../../components/CompactProfile';
+import Header from '../../components/header/header';
+
 
 export function GovernomentPage() {
   /* const placeHolderObj1="King";
@@ -137,7 +139,10 @@ export function GovernomentPage() {
   };
 
   return (
+    <>
+    <Header />
     <div className="cntainer-fluid row">
+
       <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
         <MenuBar />
       </div>
@@ -305,6 +310,7 @@ export function GovernomentPage() {
         </Modal>
       </div>
     </div>
+  </>
   );
 }
 

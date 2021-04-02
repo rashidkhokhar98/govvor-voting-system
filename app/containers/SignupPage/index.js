@@ -16,6 +16,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { roles } from '../../constant';
+import Header from '../../components/header/header';
+
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -59,6 +61,8 @@ export function SignupPage({ history }) {
     setImage(base64Image);
   };
   return (
+    <>
+    <Header />
     <div className="container-fluid ">
       <div className="container bg-dark  pb-3 pt-3 border mt-5 mb-5 text-light rounded">
         <form onSubmit={handleSubmit(onSubmitt)}>
@@ -200,6 +204,7 @@ export function SignupPage({ history }) {
         </form>
       </div>
     </div>
+ </>
   );
 }
 

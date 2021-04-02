@@ -10,6 +10,7 @@ import GovernomentPage from '../containers/GovernomentPage';
 import ConstitutionPage from '../containers/ConstitutionPage';
 import PublicPage from '../containers/PublicPage';
 import AboutPage from '../containers/AboutPage';
+import Admin from '../containers/Admin';
 import NotFoundPage from '../containers/NotFoundPage';
 
 const Routes = () => (
@@ -24,6 +25,7 @@ const Routes = () => (
       <Route exact path="/constitution" component={ConstitutionPage} />
       <Route exact path="/public" component={PublicPage} />
       <Route exact path="/about" component={AboutPage} />
+      <Route exact path="/admin" component={Admin} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>

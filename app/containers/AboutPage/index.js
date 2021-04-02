@@ -9,8 +9,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import MenuBar from '../../components/MenuBar';
+import Header from '../../components/header/header';
+
+
 export function AboutPage() {
   return (
+    <>
+    <Header />
     <div className="cntainer-fluid row ">
       <div
         className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark"
@@ -68,6 +73,7 @@ export function AboutPage() {
         </div>
       </div>
     </div>
+  </>
   );
 }
 

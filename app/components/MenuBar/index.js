@@ -41,6 +41,12 @@ function MenuBar() {
       Constitution
       </Link>
       </li>
+
+      <li className="nav-item">
+      <Link className="nav-link text-light pl-0" to="/admin">
+      Admin
+      </Link>
+      </li>
     
       <li className="nav-item">
       <Link className="nav-link text-light pl-0" to="/about">

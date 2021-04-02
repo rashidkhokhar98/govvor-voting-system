@@ -24,12 +24,6 @@ const Header = () => (
       </div>
       {!JSON.parse(localStorage.getItem('userInfo')) ? (
         <div>
-          <img
-            src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
-            width="40"
-            height="40"
-            className="rounded-circle mr-1"
-          />
 
           <a className="btn btn-success my-2 my-sm-0  mr-2 ml-2" href="/Signup">
             SignUp
@@ -51,7 +45,7 @@ const Header = () => (
           />
 
           <button
-            className="btn btn-success my-2 my-sm-0"
+            className="btn btn-danger my-2 my-sm-0"
             onClick={e => localStorage.removeItem('userInfo')}
           >
             Logout
