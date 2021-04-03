@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../images/logo1.jpg';
-const Header = () => (
+const Header= () => {
+  return(
   <nav
     className="navbar navbar-expand-lg"
     style={{ backgroundColor: 'rgb(79, 235, 227)' }}
@@ -10,7 +11,7 @@ const Header = () => (
         <a
           className="navbar-brand  font-weight-bold "
           style={{ color: 'rgb(153,50,204)' }}
-          href="/"
+         
         >
           <img
             src={Logo}
@@ -44,16 +45,17 @@ const Header = () => (
             className="rounded-circle mr-1"
           />
 
-          <button
+          <a
             className="btn btn-danger my-2 my-sm-0"
-            onClick={e => localStorage.removeItem('userInfo')}
+            onClick={() => localStorage.removeItem('userInfo')}
+            href="/login"
           >
             Logout
-          </button>
+          </a>
         </div>
       )}
     </div>
   </nav>
-);
+)};
 
 export default Header;

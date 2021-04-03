@@ -15,7 +15,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import MenuBar from '../../components/MenuBar';
 import Header from '../../components/header/header';
-
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup.object().shape({
   email: yup.string().required(),
@@ -33,19 +34,31 @@ export function LoginPage({history}) {
     axios.post('http://localhost:5000/api/v1/users/login', data).then(res => {
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       history.push('/public');
+        
+     if (res.data.success === 1) {
+      toast.success('Success! You have sucessfully LogIn', {
+          type: 'success',
+        });
+    } else {
+        toast.error(`${res.data.message}`, { type: 'error' });
+      }
+      if (res.data && formData) {
+        // add a call for 3.3 $ weekly payment here
+      }
     });
     reset();
   };
   return (
     <>
     <Header />
-    <div className="cntainer-fluid row ">
-      <div
+    <div className="cntainer-fluid row "  style={{ height: '1000px' }}>
+   {/*   <div
         className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark "
-        style={{ height: '1000px' }}
+       
       >
         <MenuBar />
       </div>
+      */}
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 ">
         <div className="row justify-content-center ">
           <div className="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6 bg-dark  pb-3 pt-3 border mt-5 mb-5 text-light rounded ">
@@ -100,6 +113,8 @@ export function LoginPage({history}) {
         </div>
       </div>
     </div>
+    <ToastContainer />
+
   </>
   );
 }

@@ -17,6 +17,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { roles } from '../../constant';
 import Header from '../../components/header/header';
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const schema = yup.object().shape({
@@ -46,7 +48,18 @@ export function SignupPage({ history }) {
     console.log('data', obj);
     axios.post('http://localhost:5000/api/v1/users/register', obj).then(res => {
       localStorage.setItem('userInfo', JSON.stringify(res.data));
+      reset();
+     if (res.data.success === 1) {
+      toast.success('Success! You have sucessfully Registered');
+    //
+    } else {
+        toast.error(`${res.data.message}`, { type: 'error' });
+      }
+      if (res.data && formData) {
+        // add a call for 3.3 $ weekly payment here
+      }
       history.push('/public');
+
     });
   };
   const toBase64 = file =>
@@ -203,6 +216,7 @@ export function SignupPage({ history }) {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
  </>
   );

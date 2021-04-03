@@ -312,19 +312,19 @@ export const ElectionCategories = {
 
 export const roles = [
   {
-    name: 'King',
-    value: 'king',
+    name: 'KING',
+    value: 'KING',
   },
   {
-    name: 'Prime_menister',
-    value: 'Prime_menister',
+    name: 'PRIME_MINISTER',
+    value: 'PRIME_MINISTER',
   },
   {
-    name: 'Santor',
-    value: 'santor',
+    name: 'SENATOR',
+    value: 'SENATOR',
   },
   {
-    name: 'Mayer',
-    value: 'mayer',
+    name: 'MAYER',
+    value: 'MAYER',
   },
 ];
