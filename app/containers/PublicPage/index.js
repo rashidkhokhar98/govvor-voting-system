@@ -7,10 +7,10 @@ import { compose } from 'redux';
 import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import MenuBar from '../../components/MenuBar';
 import { Search } from 'react-bootstrap-icons';
-import { ElectionCategories } from '../../constant';
 import { Modal } from 'react-bootstrap';
+import MenuBar from '../../components/MenuBar';
+import { ElectionCategories } from '../../constant';
 import Header from '../../components/header/header';
 // import Avatar from '../../images/User-Avatar.png';
 
@@ -21,7 +21,8 @@ export function PublicPage() {
   const [mayerCategories, setMayerCategories] = useState([]);
   const [card, setCard] = useState('');
   const [cardShow, setCardShow] = useState(false);
-
+  const [userDetail, setUserDetail] = useState({});
+  const [billDetail, setBillDetail] = useState([]);
   const [disableVote, setDisableVote] = useState(false);
 
   const [searchText, setSearchText] = useState('');
@@ -56,18 +57,28 @@ export function PublicPage() {
       mayerCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
     setMayerCategories(updatedMayer);
 
-    if (!value) {
-      setKingCategories(ElectionCategories[placeHolderObj1].categories);
-      setPrimenisterCategories(ElectionCategories[placeHolderObj2].categories);
-      setsenatorCategories(ElectionCategories[placeHolderObj3].categories);
-      setMayerCategories(ElectionCategories[placeHolderObj4].categories);
-    }
+    // if (!value) {
+    //   setKingCategories(ElectionCategories[placeHolderObj1].categories);
+    //   setPrimenisterCategories(ElectionCategories[placeHolderObj2].categories);
+    //   setsenatorCategories(ElectionCategories[placeHolderObj3].categories);
+    //   setMayerCategories(ElectionCategories[placeHolderObj4].categories);
+    // }
   };
 
   const handleCategoryItem = value => {
     // e.preventDefault();
-    setCard(value);
-    setCardShow(true);
+    axios
+      .get(`http://localhost:5000/api/v1/users/get-user?id=${value._id}`)
+      .then(res => {
+        const { data } = res || {};
+        if (data.success === 1) {
+          console.log('res', data);
+          setUserDetail(data.user);
+          setBillDetail(data.bill);
+          setCard(value);
+          setCardShow(true);
+        }
+      });
   };
   const addVote = cardV => {
     const cloneObj = { ...cardV };
@@ -136,7 +147,7 @@ export function PublicPage() {
             <Modal.Body>
               <div className="row ">
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  {card && (
+                  {userDetail && (
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto px-auto pb-2 pt-2">
                       <div className="row mx-auto">
                         <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
@@ -154,33 +165,39 @@ export function PublicPage() {
                               </tr>
                               <tr>
                                 <td>
-                                  <small>{card.name}</small>
+                                  <small>{userDetail.fullName}</small>
                                 </td>
                               </tr>
 
                               <tr>
                                 <td>
-                                  <small>{card.rank}</small>
+                                  <small>{userDetail.role}</small>
                                 </td>
                               </tr>
                               <tr>
                                 <td>
-                                  <small>Votes:{card.vote}</small>
+                                  <small>Votes:{userDetail.vote || 0}</small>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                         </div>
-                        <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                          <h3
-                            className="font-style "
-                            style={{ color: 'rgb(153,50,204)' }}
-                          >
-                            {card.bill_name}
-                          </h3>
-                          <h4>Bill Number:{card.bill_number}</h4>
-                          <p>{card.bill_description}</p>
-                        </div>
+                        {billDetail && billDetail.length > 0 ? (
+                          <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                            <h3
+                              className="font-style "
+                              style={{ color: 'rgb(153,50,204)' }}
+                            >
+                              {billDetail[0].billName}
+                            </h3>
+                            <h4>Bill Number:{billDetail[0].billNumber}</h4>
+                            <p>{billDetail[0].billDescription}</p>
+                          </div>
+                        ) : (
+                          <div>
+                            <span>No Bill Found</span>
+                          </div>
+                        )}
                       </div>
 
                       {/*   <div className="row">
@@ -207,7 +224,12 @@ export function PublicPage() {
 
           <div className="row mt-2">
             <div className="col-12">
-              <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>King Candidates</h3>
+              <h3
+                className="font-style text-center"
+                style={{ color: 'rgb(153,50,204)' }}
+              >
+                King Candidates
+              </h3>
               <span>
                 {kingCategories &&
                   kingCategories.length === 0 &&
@@ -253,7 +275,10 @@ export function PublicPage() {
           </div>
           <div className="row mt-2">
             <div className="col-12">
-              <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>
+              <h3
+                className="font-style text-center"
+                style={{ color: 'rgb(153,50,204)' }}
+              >
                 Prime Minister Candidates
               </h3>
               <span>
@@ -307,7 +332,12 @@ export function PublicPage() {
 
           <div className="row mt-2">
             <div className="col-12">
-              <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>Senator Candidates</h3>
+              <h3
+                className="font-style text-center"
+                style={{ color: 'rgb(153,50,204)' }}
+              >
+                Senator Candidates
+              </h3>
               <span>
                 {senatorCategories &&
                   senatorCategories.length === 0 &&
@@ -358,7 +388,12 @@ export function PublicPage() {
 
           <div className="row mt-2">
             <div className="col-12">
-              <h3 className="font-style text-center" style={{color: 'rgb(153,50,204)'}}>Mayer Candidates</h3>
+              <h3
+                className="font-style text-center"
+                style={{ color: 'rgb(153,50,204)' }}
+              >
+                Mayer Candidates
+              </h3>
               <span>
                 {mayerCategories &&
                   mayerCategories.length === 0 &&

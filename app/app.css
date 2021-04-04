@@ -15,7 +15,9 @@ font-family: 'Pathway Gothic One', sans-serif;
     display: flex;
  position: relative;
  height: 150px;
-
+ right: 20px;
+left: 10px;
+margin-right: 30px;
   }
 
   .diamond{
