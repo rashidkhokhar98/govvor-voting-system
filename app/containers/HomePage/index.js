@@ -68,7 +68,8 @@ export default function HomePage({ history }) {
             </div>
           </nav>
           <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
-          <div className="home border border-light ">
+          <div className="mb-5   border border-light">
+          <div className="home mb-5">
             <div className="diamond">
               <a className="" href="/government">
                 <h4 className=" pt-5 text-center text-dark">Government</h4>
@@ -85,10 +86,11 @@ export default function HomePage({ history }) {
               </a>
             </div>
           </div>
-          <div className="row">
+         </div>
+          <div className="row mx-auto px-auto" >
             <div
-              className="col-md-12 col-xs-6 mx-auto"
-              style={{ marginTop: '10%' }}
+              className="col-md-12 col-xs-6 "
+             
             >
               <p>
                 <strong>Govvor.com Bio </strong> Have you ever seen a homeless

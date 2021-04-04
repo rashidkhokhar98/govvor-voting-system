@@ -51,14 +51,14 @@ export function SignupPage({ history }) {
       reset();
      if (res.data.success === 1) {
       toast.success('Success! You have sucessfully Registered');
-    //
+     history.push('/public');
     } else {
         toast.error(`${res.data.message}`, { type: 'error' });
       }
       if (res.data && formData) {
         // add a call for 3.3 $ weekly payment here
       }
-      history.push('/public');
+    
 
     });
   };
