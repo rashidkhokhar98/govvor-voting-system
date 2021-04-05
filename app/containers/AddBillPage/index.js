@@ -14,6 +14,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import MenuBar from '../../components/MenuBar';
+import Header from '../../components/header/header';
 
 const schema = yup.object().shape({
   billName: yup.string().required(),
@@ -51,6 +52,8 @@ export function AddBillPage() {
     reset();
   };
   return (
+    <>
+    <Header />
     <div className="cntainer-fluid row ">
       <div
         className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark "
@@ -124,6 +127,7 @@ export function AddBillPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

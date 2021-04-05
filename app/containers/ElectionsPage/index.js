@@ -34,46 +34,72 @@ export function ElectionsPage() {
   const [mayerCategories, setMayerCategories] = useState([]);
 
   const [card, setCard] = useState('');
+  
+  const [userDetail, setUserDetail] = useState({});
+  const [billDetail, setBillDetail] = useState([]);
   const [disableVote, setDisableVote] = useState(false);
   const [searchText, setSearchText] = useState('');
+  
   
   const search = value => {
     setSearchText(value);
     const updatedKing =
-    kingCategories &&
-    kingCategories.length > 0 &&
-    kingCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+      kingCategories &&
+      kingCategories.length > 0 &&
+      kingCategories.filter(el => el.fullName.toLowerCase().indexOf(value) !== -1);
     setKingCategories(updatedKing);
 
     const updatedPrimenister =
-    primenisterCategories &&
-    primenisterCategories.length > 0 &&
-    primenisterCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+      primenisterCategories &&
+      primenisterCategories.length > 0 &&
+      primenisterCategories.filter(
+        el => el.fullName.toLowerCase().indexOf(value) !== -1,
+      );
     setPrimenisterCategories(updatedPrimenister);
 
     const updatedSenator =
-    senatorCategories &&
-    senatorCategories.length > 0 &&
-    senatorCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+      senatorCategories &&
+      senatorCategories.length > 0 &&
+      senatorCategories.filter(
+        el => el.fullName.toLowerCase().indexOf(value) !== -1,
+      );
     setsenatorCategories(updatedSenator);
 
     const updatedMayer =
-    mayerCategories &&
-    mayerCategories.length > 0 &&
-    mayerCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+      mayerCategories &&
+      mayerCategories.length > 0 &&
+      mayerCategories.filter(el => el.fullName.toLowerCase().indexOf(value) !== -1);
     setMayerCategories(updatedMayer);
 
-   if (!value) {
-     setKingCategories( ElectionCategories[placeHolderObj1].categories);
-     setPrimenisterCategories( ElectionCategories[placeHolderObj2].categories);
-     setsenatorCategories( ElectionCategories[placeHolderObj3].categories);
-     setMayerCategories( ElectionCategories[placeHolderObj4].categories);
-  }
+  if (!value) {
+    axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
+      const { KING, MAYER, PM, SENATOR } = (res && res.data) || {};
+      setKingCategories(KING);
+      setPrimenisterCategories(PM);
+      setsenatorCategories(SENATOR);
+      setMayerCategories(MAYER);
+    });
+   }
   };
+
+
   const handleCategoryItem = value => {
-    setCard(value);
-    setCardShow(true);
+   console.log("handleCategoryItem triger")
+    // e.preventDefault();
+    axios
+      .get(`http://localhost:5000/api/v1/users/get-user?id=${value._id}`)
+      .then(res => {
+        const { data } = res || {};
+        if (data.success === 1) {
+          console.log('res', data);
+          setUserDetail(data.user);
+          setBillDetail(data.bill);
+          setCard(value);
+          setCardShow(true);
+        }
+      });
   };
+
   const addVote = cardV => {
     setStripeShow(true);
     const cloneObj = { ...cardV };
@@ -130,7 +156,7 @@ export function ElectionsPage() {
 
      <Modal.Header >
      <Modal.Title id="contained-modal-title-vcenter">
-          Selected! 
+       <strong>  {userDetail && userDetail.fullName }</strong> <small>({userDetail && userDetail.role})</small>
         </Modal.Title>
                    
      <button type="button" className="close" aria-label="Close" onClick={() => setCardShow(false)}>
@@ -142,51 +168,59 @@ export function ElectionsPage() {
       <Modal.Body >
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            {card && (
+            {userDetail && (
               <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto px-auto pb-2 pt-2"
              >
                 <div className="row mx-auto">
                   <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <img
-                              src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
-                              alt="Profile Pic"
-                              width="80em"
-                              height="80em"
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <small>{card.name}</small>
-                          </td>
-                        </tr>
-                       
-                        <tr>
-                          <td>
-                            <small>{card.rank}</small>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <small>Votes:{card.vote}</small>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <table>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <img
+                                    src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                                    alt="Profile Pic"
+                                    width="80em"
+                                    height="80em"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <small>{userDetail.fullName}</small>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <small>{userDetail.role}</small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <small>Votes:{userDetail.vote || 0}</small>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                   </div>
-                  <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>{card.bill_name}</h3>
-                    <h4>Bill Number:{card.bill_number}</h4>
-                    <p>
-                    
-                      {card.bill_description}
-                    </p>
-                  </div>
-                </div>
+                  {billDetail && billDetail.length > 0 ? (
+                          <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                            <h3
+                              className="font-style "
+                              style={{ color: 'rgb(153,50,204)' }}
+                            >
+                              {billDetail[0].billName}
+                            </h3>
+                            <h6>Bill_Number:{billDetail[0].billNumber}</h6>
+                            <p>{billDetail[0].billDescription}</p>
+                          </div>
+                        ) : (
+                          <div>
+                            <span>No Bill Found</span>
+                          </div>
+                        )}
+                      </div>
         <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
                 
 
@@ -226,6 +260,7 @@ export function ElectionsPage() {
                     Claim
                   </Button>
                 </div>
+              
               </div>
             )}
           </div>
@@ -243,13 +278,16 @@ export function ElectionsPage() {
             </span>
             <div className="row d-flex bg-light mx-auto">
               {kingCategories && kingCategories.map(item => (
-                 <div 
-                     onClick={() => handleCategoryItem(item)} >
-                  <Card
-                    className="ml-5 mb-5 shadow"
-                    style={{width: '13rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
-                    
-                  >
+                 <div onClick={() => handleCategoryItem(item)}>
+                   <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
                         src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -290,16 +328,20 @@ export function ElectionsPage() {
                 primenisterCategories.length === 0 &&
                 'No Record Found'}
             </span>
-            <div className="row d-flex bg-light">
+            <div className="row d-flex bg-light mx-auto">
      
 
               {primenisterCategories && primenisterCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
-                  <Card
-                    className="ml-5 mb-5 shadow"
-                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
-                    
-                  >
+                   <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
                         src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -339,15 +381,19 @@ export function ElectionsPage() {
                 senatorCategories.length === 0 &&
                 'No Record Found'}
             </span>
-            <div className="row d-flex bg-light">
+            <div className="row d-flex bg-light mx-auto">
 
               {senatorCategories && senatorCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
                   <Card
-                    className="ml-5 mb-5 shadow"
-                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
-                    
-                  >
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
                         src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -387,16 +433,20 @@ export function ElectionsPage() {
                 mayerCategories.length === 0 &&
                 'No Record Found'}
             </span>
-            <div className="row d-flex bg-light">
+            <div className="row d-flex bg-light mx-auto">
          
 
               {mayerCategories && mayerCategories.map(item => (
                 <div onClick={() => handleCategoryItem(item)}>
-                  <Card
-                    className="ml-5 mb-5 shadow"
-                    style={{width: '12rem' ,border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}
-                    
-                  >
+                   <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
                     <Card.Header style={{ backgroundColor: 'transparent' }}>
                       <img
                         src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"

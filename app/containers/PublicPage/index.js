@@ -32,14 +32,14 @@ export function PublicPage() {
     const updatedKing =
       kingCategories &&
       kingCategories.length > 0 &&
-      kingCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+      kingCategories.filter(el => el.fullName.toLowerCase().indexOf(value) !== -1);
     setKingCategories(updatedKing);
 
     const updatedPrimenister =
       primenisterCategories &&
       primenisterCategories.length > 0 &&
       primenisterCategories.filter(
-        el => el.name.toLowerCase().indexOf(value) !== -1,
+        el => el.fullName.toLowerCase().indexOf(value) !== -1,
       );
     setPrimenisterCategories(updatedPrimenister);
 
@@ -47,22 +47,25 @@ export function PublicPage() {
       senatorCategories &&
       senatorCategories.length > 0 &&
       senatorCategories.filter(
-        el => el.name.toLowerCase().indexOf(value) !== -1,
+        el => el.fullName.toLowerCase().indexOf(value) !== -1,
       );
     setsenatorCategories(updatedSenator);
 
     const updatedMayer =
       mayerCategories &&
       mayerCategories.length > 0 &&
-      mayerCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+      mayerCategories.filter(el => el.fullName.toLowerCase().indexOf(value) !== -1);
     setMayerCategories(updatedMayer);
 
-    // if (!value) {
-    //   setKingCategories(ElectionCategories[placeHolderObj1].categories);
-    //   setPrimenisterCategories(ElectionCategories[placeHolderObj2].categories);
-    //   setsenatorCategories(ElectionCategories[placeHolderObj3].categories);
-    //   setMayerCategories(ElectionCategories[placeHolderObj4].categories);
-    // }
+  if (!value) {
+    axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
+      const { KING, MAYER, PM, SENATOR } = (res && res.data) || {};
+      setKingCategories(KING);
+      setPrimenisterCategories(PM);
+      setsenatorCategories(SENATOR);
+      setMayerCategories(MAYER);
+    });
+   }
   };
 
   const handleCategoryItem = value => {
@@ -80,12 +83,14 @@ export function PublicPage() {
         }
       });
   };
-  const addVote = cardV => {
+
+ /* const addVote = cardV => {
     const cloneObj = { ...cardV };
     cloneObj.vote += 1;
     setCard(cloneObj);
     setDisableVote(true);
   };
+  */
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
@@ -131,7 +136,7 @@ export function PublicPage() {
           >
             <Modal.Header>
               <Modal.Title id="contained-modal-title-vcenter">
-                Selected!
+              <strong>  {userDetail && userDetail.fullName }</strong> <small>({userDetail && userDetail.role})</small> 
               </Modal.Title>
 
               <button
@@ -190,7 +195,7 @@ export function PublicPage() {
                             >
                               {billDetail[0].billName}
                             </h3>
-                            <h4>Bill Number:{billDetail[0].billNumber}</h4>
+                            <h6>Bill_Number:{billDetail[0].billNumber}</h6>
                             <p>{billDetail[0].billDescription}</p>
                           </div>
                         ) : (
@@ -222,7 +227,7 @@ export function PublicPage() {
             </Modal.Body>
           </Modal>
 
-          <div className="row mt-2">
+          <div className="row mt-2 ">
             <div className="col-12">
               <h3
                 className="font-style text-center"
@@ -235,13 +240,18 @@ export function PublicPage() {
                   kingCategories.length === 0 &&
                   'No Record Found'}
               </span>
-              <div className="row d-flex bg-light mx-auto">
+              <div className="row d-flex bg-light mx-auto ">
                 {kingCategories &&
                   kingCategories.map(item => (
                     <div onClick={() => handleCategoryItem(item)}>
                       <Card
-                        className="ml-5 mb-5 border border-dark shadow"
-                        style={{ width: '14rem' }}
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
                       >
                         <Card.Header style={{ backgroundColor: 'transparent' }}>
                           <img
@@ -286,14 +296,14 @@ export function PublicPage() {
                   primenisterCategories.length === 0 &&
                   'No Record Found'}
               </span>
-              <div className="row d-flex bg-light">
+              <div className="row d-flex bg-light mx-auto">
                 {primenisterCategories &&
                   primenisterCategories.map(item => (
                     <div onClick={() => handleCategoryItem(item)}>
                       <Card
-                        className="ml-5 mb-5 shadow"
+                        className="mr-3 mb-3 shadow"
                         style={{
-                          width: '12rem',
+                          width: '14rem',
                           border: '1px solid rgb(79, 235, 227)',
                           borderRadius: '5px',
                         }}
@@ -343,14 +353,14 @@ export function PublicPage() {
                   senatorCategories.length === 0 &&
                   'No Record Found'}
               </span>
-              <div className="row d-flex bg-light">
+              <div className="row d-flex bg-light mx-auto">
                 {senatorCategories &&
                   senatorCategories.map(item => (
                     <div onClick={() => handleCategoryItem(item)}>
                       <Card
-                        className="ml-5 mb-5 shadow"
+                        className="mr-3 mb-3 shadow"
                         style={{
-                          width: '12rem',
+                          width: '14rem',
                           border: '1px solid rgb(79, 235, 227)',
                           borderRadius: '5px',
                         }}
@@ -399,14 +409,14 @@ export function PublicPage() {
                   mayerCategories.length === 0 &&
                   'No Record Found'}
               </span>
-              <div className="row d-flex bg-light">
+              <div className="row d-flex bg-light mx-auto">
                 {mayerCategories &&
                   mayerCategories.map(item => (
                     <div onClick={() => handleCategoryItem(item)}>
                       <Card
-                        className="ml-5 mb-5 shadow"
+                        className="mr-3 mb-3 shadow"
                         style={{
-                          width: '12rem',
+                          width: '14rem',
                           border: '1px solid rgb(79, 235, 227)',
                           borderRadius: '5px',
                         }}

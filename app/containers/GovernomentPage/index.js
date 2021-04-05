@@ -175,21 +175,22 @@ export function GovernomentPage() {
             Elected Government Of The Week
           </h4>
         </div>
-        <div className="row d-flex bg-light mt-5 ">
+        <div className="row d-flex bg-light mt-5  mx-auto">
           {govt && govt.length === 0 && (
             <span className="mx-auto">No record exist</span>
           )}
           {govt &&
             govt.map(item => (
               <div onClick={() => handleCategoryItem(item)}>
-                <Card
-                  className="ml-5 mb-5 shadow"
-                  style={{
-                    width: '12rem',
-                    border: '1px solid rgb(79, 235, 227)',
-                    borderRadius: '5px',
-                  }}
-                >
+                 <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
                   <Card.Header className="bg-light">
                     <img
                       src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
