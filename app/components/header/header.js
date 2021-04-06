@@ -1,9 +1,8 @@
 import React from 'react';
 import Logo from '../../images/logo1.jpg';
 const Header = () => {
-  const isLoggedIn = localStorage.getItem('userInfo');
+  //const isLoggedIn = localStorage.getItem('userInfo');
 
-console.log("isLoggedIn", isLoggedIn)
   return (
     <nav
       className="navbar navbar-expand-lg"
@@ -40,13 +39,13 @@ console.log("isLoggedIn", isLoggedIn)
         ) : (
           <div>
             <span>
-             name: {isLoggedIn && isLoggedIn.newUser && isLoggedIn.newUser.fullName}
+             {JSON.parse(localStorage.getItem('userInfo')) && JSON.parse(localStorage.getItem('userInfo')).newUser && JSON.parse(localStorage.getItem('userInfo')).newUser.fullName}
             </span>
             <img
               src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
               width="40"
               height="40"
-              className="rounded-circle mr-2"
+              className="rounded-circle mr-2 ml-2"
             />
             <a
               className="btn btn-danger my-2 my-sm-0"

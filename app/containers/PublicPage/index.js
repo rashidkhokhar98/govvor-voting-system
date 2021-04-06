@@ -10,8 +10,8 @@ import axios from 'axios';
 import { Search } from 'react-bootstrap-icons';
 import { Modal } from 'react-bootstrap';
 import MenuBar from '../../components/MenuBar';
-import { ElectionCategories } from '../../constant';
 import Header from '../../components/header/header';
+import { ElectionCategories } from '../../constant';
 // import Avatar from '../../images/User-Avatar.png';
 
 export function PublicPage() {
