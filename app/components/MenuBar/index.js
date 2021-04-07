@@ -21,11 +21,18 @@ function MenuBar() {
           Home
       </Link>
       </li>
+      {!JSON.parse(localStorage.getItem('userInfo')) ? (
       <li className="nav-item " >
       <Link  className="nav-link text-light" to="/public">
           Public
       </Link>
+      </li>):(
+      <li className="nav-item " >
+      <Link  className="nav-link text-light" to="/profile">
+          Profile
+      </Link>
       </li>
+      )}
       <li className="nav-item" >
       <Link className=" nav-link text-light pl-0" to="/government">
           Government
