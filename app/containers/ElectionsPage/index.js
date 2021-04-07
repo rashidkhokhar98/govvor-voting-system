@@ -22,6 +22,7 @@ export function ElectionsPage() {
   const [modalShow, setModalShow] = useState(false);
   const [cardShow, setCardShow] = useState(false);
   const [stripeShow, setStripeShow] = useState(false);
+  const [userId, setUserId] = useState(null);
   const [product] = React.useState({
     name: 'Govvor.com',
     price: 4.99,
@@ -100,16 +101,33 @@ export function ElectionsPage() {
       });
   };
 
-  const addVote = cardV => {
+  const addVote = (cardV, userIdV) => {
     setStripeShow(true);
+    setUserId(userIdV);
     const cloneObj = { ...cardV };
     cloneObj.vote += 1;
     setCard(cloneObj);
     setDisableVote(true);
   };
-  const onToken = token => {
-    console.log('token is', token);
-  };
+ 
+  async function onToken(token, addresses) {
+    const response = await axios.post(
+      'http://localhost:5000/api/v1/users/checkout',
+      { token, product, userId },
+    );
+    const { status } = response.data;
+    console.log('Response:', response.data);
+    window.location.reload();
+    if (status === 'success') {
+      console.log('ddddddd', status);
+      // toast('Success! ($9.45 USD) - Payment has been done', {
+      //   type: 'success',
+      // });
+    } else {
+      console.log('error', status);
+      // toast('Something went wrong', { type: 'error' });
+    }
+  }
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
@@ -198,7 +216,7 @@ export function ElectionsPage() {
                               </tr>
                               <tr>
                                 <td>
-                                  <small>Votes:{userDetail.vote || 0}</small>
+                                  <small>Votes:{billDetail&& billDetail.length > 0 && billDetail[0].vote || 0}</small>
                                 </td>
                               </tr>
                             </tbody>
@@ -229,7 +247,7 @@ export function ElectionsPage() {
                     <StripeCheckout
                       className="px-auto mx-auto"
                       token={onToken}
-                      stripeKey="pk_test_51ICk33BW8V4hKaTPZuaaXpps2drWjjMXobfOy9pwGcQBrEb9fzb3xvtjdEr9TPsQFlEONX9hTI93IQLXDWQO6qe000sp4KoAsP"
+                      stripeKey="pk_test_Lp6L3Vsfdml5cUGlmP5yzysT"
                       name="Govvor.com"
                       amount={product.price * 100}
                       billingAddress
@@ -238,7 +256,7 @@ export function ElectionsPage() {
                   ) : (
                     <Button
                       className="btn btn-success px-auto mx-auto"
-                      onClick={() => addVote(card)}
+                      onClick={() => addVote(card, userDetail._id)}
                       disabled={disableVote}
                     >
                       Vote
@@ -413,7 +431,7 @@ export function ElectionsPage() {
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
                         <b>Votes:</b>
-                        {item.vote || 0}
+                        {(item.bill && item.bill.length > 0 && item.bill[0].vote) || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
