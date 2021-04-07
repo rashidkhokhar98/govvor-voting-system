@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -18,6 +18,7 @@ import { ElectionCategories } from '../../constant';
 import MenuBar from '../../components/MenuBar';
 import CompactProfile from '../../components/CompactProfile';
 import Header from '../../components/header/header';
+import axios from 'axios';
 
 
 export function GovernomentPage() {
@@ -30,51 +31,11 @@ export function GovernomentPage() {
    const[senatorCategories, setsenatorCategories]=useState(ElectionCategories[placeHolderObj3].categories || []);
    const[mayerCategories, setMayerCategories]=useState(ElectionCategories[placeHolderObj4].categories || []);
   */
-  const [govt, setGovt] = useState([
-    {
-      name: 'AdilK01',
-      value: 'adil01',
-      rank: 'King',
-      vote: 1,
-      bill_name: 'Lorem Ipsum',
-      bill_number: 1,
-      bill_description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    },
-    {
-      name: 'AdilP02',
-      value: 'adil02',
-      rank: 'Prime_menister',
-      vote: 2,
-      bill_name: 'Lorem Ipsum',
-      bill_number: 2,
-      bill_description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    },
-    {
-      name: 'AdilS03',
-      value: 'adil03',
-      rank: 'Senator',
-      vote: 3,
-      bill_name: 'Lorem Ipsum',
-      bill_number: 3,
-      bill_description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    },
-    {
-      name: 'Adil04',
-      value: 'adil04',
-      rank: 'Mayer',
-      vote: 4,
-      bill_name: 'Lorem Ipsum',
-      bill_number: 4,
-      bill_description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-    },
-  ]);
+  const [govt, setGovt] = useState();
 
   const [searchText, setSearchText] = useState('');
 
+/*
   const search = value => {
     setSearchText(value);
     const updated =
@@ -84,50 +45,9 @@ export function GovernomentPage() {
     setGovt(updated);
 
     if (!value) {
-      setGovt([
-        {
-          name: 'AdilK01',
-          value: 'adil01',
-          rank: 'King',
-          vote: 1,
-          bill_name: 'Lorem Ipsum',
-          bill_number: 1,
-          bill_description:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        },
-        {
-          name: 'AdilP02',
-          value: 'adil02',
-          rank: 'Prime_menister',
-          vote: 2,
-          bill_name: 'Lorem Ipsum',
-          bill_number: 2,
-          bill_description:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        },
-        {
-          name: 'AdilS03',
-          value: 'adil03',
-          rank: 'Senator',
-          vote: 3,
-          bill_name: 'Lorem Ipsum',
-          bill_number: 3,
-          bill_description:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        },
-        {
-          name: 'Adil04',
-          value: 'adil04',
-          rank: 'Mayer',
-          vote: 4,
-          bill_name: 'Lorem Ipsum',
-          bill_number: 4,
-          bill_description:
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-        },
-      ]);
     }
   };
+*/
 
   const [card, setCard] = useState();
   const [cardShow, setCardShow] = useState(false);
@@ -137,7 +57,16 @@ export function GovernomentPage() {
     setCard(value);
     setCardShow(true);
   };
-
+  
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
+      const data = (res && res.data) || {};
+      
+        console.log('resdsdasd', data);
+        setGovt(data);
+    });
+  }, []);
+  console.log('govt', govt);
   return (
     <>
     <Header />
@@ -179,9 +108,9 @@ export function GovernomentPage() {
           {govt && govt.length === 0 && (
             <span className="mx-auto">No record exist</span>
           )}
-          {govt &&
-            govt.map(item => (
-              <div onClick={() => handleCategoryItem(item)}>
+          
+          {govt && govt.king &&
+              <div onClick={() => handleCategoryItem(govt.king)}>
                  <Card
                         className=" mr-3 mb-3 shadow"
                         style={{
@@ -203,18 +132,126 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {item.name}
+                      {govt.king.userId.fullName}
                       <br />
-                      {item.rank}
+                      {govt.king.userId.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {item.vote}
+                      {govt.king.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
               </div>
-            ))}
+}
+ 
+{govt && govt.pm &&
+              <div onClick={() => handleCategoryItem(govt.pm)}>
+                 <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
+                  <Card.Header className="bg-light">
+                    <img
+                      src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                      alt="Profile Pic"
+                      width="70em"
+                      height="70em"
+                    />
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text
+                      style={{ fontSize: 'medium', lineHeight: '25px' }}
+                    >
+                      {govt.pm.userId.fullName}
+                      <br />
+                      {govt.pm.userId.role}
+                    </Card.Text>
+                    <Card.Title style={{ lineHeight: '5px' }}>
+                      Votes:
+                      {govt.pm.vote}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </div>
+}
+ 
+{govt && govt.senator &&
+              <div onClick={() => handleCategoryItem(govt.senator)}>
+                 <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
+                  <Card.Header className="bg-light">
+                    <img
+                      src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                      alt="Profile Pic"
+                      width="70em"
+                      height="70em"
+                    />
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text
+                      style={{ fontSize: 'medium', lineHeight: '25px' }}
+                    >
+                      {govt.senator.userId.fullName}
+                      <br />
+                      {govt.senator.userId.role}
+                    </Card.Text>
+                    <Card.Title style={{ lineHeight: '5px' }}>
+                      Votes:
+                      {govt.senator.vote}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </div>
+}
+ 
+          {govt && govt.mayer &&
+              <div onClick={() => handleCategoryItem(govt.mayer)}>
+                 <Card
+                        className=" mr-3 mb-3 shadow"
+                        style={{
+                          width: '14rem',
+                          border: '1px solid rgb(79, 235, 227)',
+                          borderRadius: '5px',
+                        }}
+                        
+                      >
+                  <Card.Header className="bg-light">
+                    <img
+                      src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                      alt="Profile Pic"
+                      width="70em"
+                      height="70em"
+                    />
+                  </Card.Header>
+                  <Card.Body>
+                    <Card.Text
+                      style={{ fontSize: 'medium', lineHeight: '25px' }}
+                    >
+                      {govt.mayer.userId.fullName}
+                      <br />
+                      {govt.mayer.userId.role}
+                    </Card.Text>
+                    <Card.Title style={{ lineHeight: '5px' }}>
+                      Votes:
+                      {govt.mayer.vote}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </div>
+}
         </div>
 
         <Modal
@@ -225,7 +262,7 @@ export function GovernomentPage() {
         >
           <Modal.Header>
             <Modal.Title id="contained-modal-title-vcenter">
-              Selected!
+            <strong>  {card && card.userId.fullName }</strong> <small>(SELECTED {card && card.userId.role} OF THE WEEK!)</small>
             </Modal.Title>
 
             <button
@@ -259,13 +296,13 @@ export function GovernomentPage() {
                             </tr>
                             <tr>
                               <td>
-                                <small>{card.name}</small>
+                                <small>{card.userId.fullName}</small>
                               </td>
                             </tr>
 
                             <tr>
                               <td>
-                                <small>{card.rank}</small>
+                                <small>{card.userId.role}</small>
                               </td>
                             </tr>
                             <tr>
@@ -281,10 +318,10 @@ export function GovernomentPage() {
                           className="font-style "
                           style={{ color: 'rgb(153,50,204)' }}
                         >
-                          {card.bill_name}
+                          {card.billName}
                         </h3>
-                        <h4>Bill Number:{card.bill_number}</h4>
-                        <p>{card.bill_description}</p>
+                        <h4>Bill Number:{card.billNumber}</h4>
+                        <p>{card.billDescription}</p>
                       </div>
                     </div>
 

@@ -16,27 +16,12 @@ import { Search } from 'react-bootstrap-icons';
 import { ElectionCategories } from '../../constant';
 import CenterModal from '../../components/CenterModal';
 import Header from '../../components/header/header';
+import axios from 'axios';
 
 
 export function ConstitutionPage() {
   const [modalShow, setModalShow] = useState(false);
-  const placeHolderObj1 = 'King';
-  const placeHolderObj2 = 'Prime_menister';
-  const placeHolderObj3 = 'Senator';
-  const placeHolderObj4 = 'Mayer';
-  const [kingCategories, setKingCategories] = useState(
-    ElectionCategories[placeHolderObj1].categories || [],
-  );
-  const [primenisterCategories, setPrimenisterCategories] = useState(
-    ElectionCategories[placeHolderObj2].categories || [],
-  );
-  const [senatorCategories, setsenatorCategories] = useState(
-    ElectionCategories[placeHolderObj3].categories || [],
-  );
-  const [mayerCategories, setMayerCategories] = useState(
-    ElectionCategories[placeHolderObj4].categories || [],
-  );
-
+  const [govt, setGovt] = useState();
   const [searchText, setSearchText] = useState('');
   
   const search = value => {
@@ -73,6 +58,16 @@ export function ConstitutionPage() {
   }
   };
 
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
+      const data = (res && res.data) || {};
+      
+        console.log('resdsdasd', data);
+        setGovt(data);
+    });
+  }, []);
+  console.log('govt', govt);
+
   return (
     <>
     <Header />
@@ -97,11 +92,13 @@ export function ConstitutionPage() {
   </div>
   </div>
         <div className="row ">
-        {kingCategories && primenisterCategories && senatorCategories && mayerCategories && kingCategories.length===0 && primenisterCategories.length===0 && senatorCategories.length===0 && mayerCategories.length===0 && <span className="mx-auto mt-5">No record exist</span>}
+          {govt && govt.length === 0 && (
+            <span className="mx-auto">No record exist</span>
+          )}
 
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
           
-            {kingCategories && kingCategories.map(item => (
+            {govt && govt.king &&
               <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
               style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
@@ -120,12 +117,17 @@ export function ConstitutionPage() {
                         </tr>
                         <tr>
                           <td>
-                            <small> {item.name}</small>
+                            <small>  {govt.king.userId.fullName} </small>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.rank}</small>
+                            <small>  {govt.king.userId.role}</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small>  {govt.king.vote}</small>
                           </td>
                         </tr>
                       </tbody>
@@ -134,13 +136,13 @@ export function ConstitutionPage() {
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
                     <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
-                       {item.bill_name}
+                       {govt.king.billName}
                     </h3>
                     <h4>
-                      Bill Number: {item.bill_number}
+                      Bill Number: {govt.king.billNumber}
                     </h4>
                     <p>
-                      {item.bill_description}
+                      {govt.king.billDescription}
                     </p>
                   </div>
                 </div>
@@ -162,12 +164,12 @@ export function ConstitutionPage() {
                   </Button>
                 </div>
               </div>
-            ))}
+            }
           </div>
         </div>
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            {primenisterCategories && primenisterCategories.map(item => (
+          {govt && govt.pm &&
               <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
               style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
@@ -186,12 +188,17 @@ export function ConstitutionPage() {
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.name}</small>
+                            <small>{govt.pm.userId.fullName}</small>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.rank}</small>
+                            <small>{govt.pm.userId.role}</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small>{govt.pm.vote}</small>
                           </td>
                         </tr>
                       </tbody>
@@ -200,13 +207,13 @@ export function ConstitutionPage() {
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
                     <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
-                       {item.bill_name}
+                       {govt.pm.billName}
                     </h3>
                     <h4>
-                      Bill Number: {item.bill_number}
+                      Bill Number: {govt.pm.billNumber}
                     </h4>
                     <p>
-                     {item.bill_description}
+                     {govt.pm.billDescription}
                     </p>
                   </div>
                 </div>
@@ -228,12 +235,12 @@ export function ConstitutionPage() {
                   </Button>
                 </div>
               </div>
-            ))}
+            }
           </div>
         </div>
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            {senatorCategories && senatorCategories.map(item => (
+          {govt && govt.senator &&
               <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
               style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
@@ -252,12 +259,17 @@ export function ConstitutionPage() {
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.name}</small>
+                            <small> {govt.senator.userId.fullName}</small>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.rank}</small>
+                            <small>  {govt.senator.userId.role}</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small>  {govt.senator.vote}</small>
                           </td>
                         </tr>
                       </tbody>
@@ -265,15 +277,16 @@ export function ConstitutionPage() {
                   </div>
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                    <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
-                       {item.bill_name}
+                  <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
+                       {govt.senator.billName}
                     </h3>
                     <h4>
-                      Bill Number: {item.bill_number}
+                      Bill Number: {govt.senator.billNumber}
                     </h4>
                     <p>
-                     {item.bill_description}
-                    </p>
+                     {govt.senator.billDescription}
+                    </p>.
+
                   </div>
                 </div>
                 <hr style={{border:  '1px solid rgb(79, 235, 227)'}} />
@@ -294,12 +307,12 @@ export function ConstitutionPage() {
                   </Button>
                 </div>
               </div>
-            ))}
+            }
           </div>
         </div>
         <div className="row ">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            {mayerCategories && mayerCategories.map(item => (
+          {govt && govt.mayer &&
               <div className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
               style={{border:  '1px solid rgb(79, 235, 227)', borderRadius: '5px'}}>
                 <div className="row mx-auto">
@@ -318,12 +331,17 @@ export function ConstitutionPage() {
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.name}</small>
+                            <small>{govt.mayer.userId.fullName}</small>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <small>{item.rank}</small>
+                            <small> {govt.mayer.userId.role}</small>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <small> {govt.mayer.vote}</small>
                           </td>
                         </tr>
                       </tbody>
@@ -332,13 +350,13 @@ export function ConstitutionPage() {
 
                   <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
                     <h3 className="font-style " style={{color: 'rgb(153,50,204)'}}>
-                      {item.bill_name}
+                       {govt.mayer.billName}
                     </h3>
                     <h4>
-                      Bill Number: {item.bill_number}
+                      Bill Number: {govt.mayer.billNumber}
                     </h4>
                     <p>
-                     {item.bill_description}
+                     {govt.mayer.billDescription}
                     </p>
                   </div>
                 </div>
@@ -360,7 +378,7 @@ export function ConstitutionPage() {
                   </Button>
                 </div>
               </div>
-            ))}
+            }
           </div>
         </div>
       </div>
