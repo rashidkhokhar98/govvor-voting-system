@@ -238,7 +238,9 @@ export function PublicPage() {
               <span>
                 {kingCategories &&
                   kingCategories.length === 0 &&
-                  'No Record Found'}
+                  <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>}
               </span>
               <div className="row d-flex bg-light mx-auto ">
                 {kingCategories &&
@@ -294,7 +296,9 @@ export function PublicPage() {
               <span>
                 {primenisterCategories &&
                   primenisterCategories.length === 0 &&
-                  'No Record Found'}
+                  <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>}
               </span>
               <div className="row d-flex bg-light mx-auto">
                 {primenisterCategories &&
@@ -351,7 +355,9 @@ export function PublicPage() {
               <span>
                 {senatorCategories &&
                   senatorCategories.length === 0 &&
-                  'No Record Found'}
+                  <div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>}
               </span>
               <div className="row d-flex bg-light mx-auto">
                 {senatorCategories &&
@@ -407,7 +413,9 @@ export function PublicPage() {
               <span>
                 {mayerCategories &&
                   mayerCategories.length === 0 &&
-                  'No Record Found'}
+                  <div class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>}
               </span>
               <div className="row d-flex bg-light mx-auto">
                 {mayerCategories &&

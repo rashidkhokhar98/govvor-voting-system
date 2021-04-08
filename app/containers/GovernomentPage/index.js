@@ -14,12 +14,11 @@ import { Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import { Modal } from 'react-bootstrap';
+import axios from 'axios';
 import { ElectionCategories } from '../../constant';
 import MenuBar from '../../components/MenuBar';
 import CompactProfile from '../../components/CompactProfile';
 import Header from '../../components/header/header';
-import axios from 'axios';
-
 
 export function GovernomentPage() {
   /* const placeHolderObj1="King";
@@ -35,7 +34,7 @@ export function GovernomentPage() {
 
   const [searchText, setSearchText] = useState('');
 
-/*
+  /*
   const search = value => {
     setSearchText(value);
     const updated =
@@ -51,35 +50,39 @@ export function GovernomentPage() {
 
   const [card, setCard] = useState();
   const [cardShow, setCardShow] = useState(false);
-
+  const [senatorInfo, setSenatorInfo] = useState(null);
+  const [mayerInfo, setMayerInfo] = useState(null);
+  const [pmInfo, setPmInfo] = useState(null);
+  const [kingInfo, setKingInfo] = useState(null);
   const handleCategoryItem = value => {
     // e.preventDefault();
     setCard(value);
     setCardShow(true);
   };
-  
+
   useEffect(() => {
     axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
       const data = (res && res.data) || {};
-      
-        console.log('resdsdasd', data);
-        setGovt(data);
+      setGovt(data.result);
+      setSenatorInfo(data.senatorInfo);
+      setMayerInfo(data.mayerInfo);
+      setKingInfo(data.kingInfo);
+      setPmInfo(data.pmInfo);
     });
   }, []);
   console.log('govt', govt);
   return (
     <>
-    <Header />
-    <div className="cntainer-fluid row">
-
-      <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
-        <MenuBar />
-      </div>
-      <div
-        className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3"
-        style={{ minHeight: '1000px' }}
-      >
-      {/*  <div className="row  ">
+      <Header />
+      <div className="cntainer-fluid row">
+        <div className="col-4 col-sm-4 col-md-3 col-lg-2 col-xl-2 bg-dark">
+          <MenuBar />
+        </div>
+        <div
+          className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3"
+          style={{ minHeight: '1000px' }}
+        >
+          {/*  <div className="row  ">
           <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
             <div className="form-group has-search">
               <Search className="form-control-feedback pt-2 pb-2" />
@@ -96,30 +99,31 @@ export function GovernomentPage() {
           </div>
         </div>
 */}
-        <div className="row text-center">
-          <h4
-            className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
-            style={{ color: 'rgb(153,50,204)' }}
-          >
-            Elected Government Of The Week
-          </h4>
-        </div>
-        <div className="row d-flex bg-light mt-5  mx-auto">
-          {govt && govt.length === 0 && (
-            <span className="mx-auto">No record exist</span>
-          )}
-          
-          {govt && govt.king &&
+          <div className="row text-center">
+            <h4
+              className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+              style={{ color: 'rgb(153,50,204)' }}
+            >
+              Elected Government Of The Week
+            </h4>
+          </div>
+          <div className="row d-flex bg-light mt-5  mx-auto">
+            {govt && govt.length === 0 && (
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+              </div>
+            )}
+
+            {govt && govt.king && (
               <div onClick={() => handleCategoryItem(govt.king)}>
-                 <Card
-                        className=" mr-3 mb-3 shadow"
-                        style={{
-                          width: '14rem',
-                          border: '1px solid rgb(79, 235, 227)',
-                          borderRadius: '5px',
-                        }}
-                        
-                      >
+                <Card
+                  className=" mr-3 mb-3 shadow"
+                  style={{
+                    width: '14rem',
+                    border: '1px solid rgb(79, 235, 227)',
+                    borderRadius: '5px',
+                  }}
+                >
                   <Card.Header className="bg-light">
                     <img
                       src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -132,9 +136,9 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {govt.king.userId.fullName}
+                      {kingInfo && kingInfo.fullName}
                       <br />
-                      {govt.king.userId.role}
+                      {kingInfo && kingInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
@@ -143,19 +147,18 @@ export function GovernomentPage() {
                   </Card.Body>
                 </Card>
               </div>
-}
- 
-{govt && govt.pm &&
+            )}
+
+            {govt && govt.pm && (
               <div onClick={() => handleCategoryItem(govt.pm)}>
-                 <Card
-                        className=" mr-3 mb-3 shadow"
-                        style={{
-                          width: '14rem',
-                          border: '1px solid rgb(79, 235, 227)',
-                          borderRadius: '5px',
-                        }}
-                        
-                      >
+                <Card
+                  className=" mr-3 mb-3 shadow"
+                  style={{
+                    width: '14rem',
+                    border: '1px solid rgb(79, 235, 227)',
+                    borderRadius: '5px',
+                  }}
+                >
                   <Card.Header className="bg-light">
                     <img
                       src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -168,9 +171,9 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {govt.pm.userId.fullName}
+                      {pmInfo && pmInfo.fullName}
                       <br />
-                      {govt.pm.userId.role}
+                      {pmInfo && pmInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
@@ -179,19 +182,18 @@ export function GovernomentPage() {
                   </Card.Body>
                 </Card>
               </div>
-}
- 
-{govt && govt.senator &&
+            )}
+
+            {govt && govt.senator && (
               <div onClick={() => handleCategoryItem(govt.senator)}>
-                 <Card
-                        className=" mr-3 mb-3 shadow"
-                        style={{
-                          width: '14rem',
-                          border: '1px solid rgb(79, 235, 227)',
-                          borderRadius: '5px',
-                        }}
-                        
-                      >
+                <Card
+                  className=" mr-3 mb-3 shadow"
+                  style={{
+                    width: '14rem',
+                    border: '1px solid rgb(79, 235, 227)',
+                    borderRadius: '5px',
+                  }}
+                >
                   <Card.Header className="bg-light">
                     <img
                       src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -204,9 +206,9 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {govt.senator.userId.fullName}
+                      {senatorInfo && senatorInfo.fullName}
                       <br />
-                      {govt.senator.userId.role}
+                      {senatorInfo && senatorInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
@@ -215,19 +217,18 @@ export function GovernomentPage() {
                   </Card.Body>
                 </Card>
               </div>
-}
- 
-          {govt && govt.mayer &&
+            )}
+
+            {govt && govt.mayer && (
               <div onClick={() => handleCategoryItem(govt.mayer)}>
-                 <Card
-                        className=" mr-3 mb-3 shadow"
-                        style={{
-                          width: '14rem',
-                          border: '1px solid rgb(79, 235, 227)',
-                          borderRadius: '5px',
-                        }}
-                        
-                      >
+                <Card
+                  className=" mr-3 mb-3 shadow"
+                  style={{
+                    width: '14rem',
+                    border: '1px solid rgb(79, 235, 227)',
+                    borderRadius: '5px',
+                  }}
+                >
                   <Card.Header className="bg-light">
                     <img
                       src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
@@ -240,9 +241,9 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {govt.mayer.userId.fullName}
+                      {mayerInfo && mayerInfo.fullName}
                       <br />
-                      {govt.mayer.userId.role}
+                      {mayerInfo && mayerInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
@@ -251,81 +252,84 @@ export function GovernomentPage() {
                   </Card.Body>
                 </Card>
               </div>
-}
-        </div>
+            )}
+          </div>
 
-        <Modal
-          show={cardShow}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">
-            <strong>  {card && card.userId.fullName }</strong> <small>(SELECTED {card && card.userId.role} OF THE WEEK!)</small>
-            </Modal.Title>
+          <Modal
+            show={cardShow}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header>
+              <Modal.Title id="contained-modal-title-vcenter">
+                <strong> {card && card.userId.fullName}</strong>{' '}
+                <small>
+                  (SELECTED {card && card.userId.role} OF THE WEEK!)
+                </small>
+              </Modal.Title>
 
-            <button
-              type="button"
-              className="close"
-              aria-label="Close"
-              onClick={() => setCardShow(false)}
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </Modal.Header>
+              <button
+                type="button"
+                className="close"
+                aria-label="Close"
+                onClick={() => setCardShow(false)}
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </Modal.Header>
 
-          <Modal.Body>
-            <div className="row ">
-              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                {card && (
-                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto px-auto pb-2 pt-2">
-                    <div className="row mx-auto">
-                      <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <img
-                                  src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
-                                  alt="Profile Pic"
-                                  width="80em"
-                                  height="80em"
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <small>{card.userId.fullName}</small>
-                              </td>
-                            </tr>
+            <Modal.Body>
+              <div className="row ">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  {card && (
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto px-auto pb-2 pt-2">
+                      <div className="row mx-auto">
+                        <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <img
+                                    src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                                    alt="Profile Pic"
+                                    width="80em"
+                                    height="80em"
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <small>{card.userId.fullName}</small>
+                                </td>
+                              </tr>
 
-                            <tr>
-                              <td>
-                                <small>{card.userId.role}</small>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <small>Votes:{card.vote}</small>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                              <tr>
+                                <td>
+                                  <small>{card.userId.role}</small>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <small>Votes:{card.vote}</small>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                          <h3
+                            className="font-style "
+                            style={{ color: 'rgb(153,50,204)' }}
+                          >
+                            {card.billName}
+                          </h3>
+                          <h4>Bill Number:{card.billNumber}</h4>
+                          <p>{card.billDescription}</p>
+                        </div>
                       </div>
-                      <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                        <h3
-                          className="font-style "
-                          style={{ color: 'rgb(153,50,204)' }}
-                        >
-                          {card.billName}
-                        </h3>
-                        <h4>Bill Number:{card.billNumber}</h4>
-                        <p>{card.billDescription}</p>
-                      </div>
-                    </div>
 
-                    {/*   <div className="row">
+                      {/*   <div className="row">
                 <Button
                   className="btn btn-success px-auto mx-auto"
                   onClick={() => addVote(card)}
@@ -340,15 +344,15 @@ export function GovernomentPage() {
                   Claim
                 </Button>
               </div> */}
-                  </div>
-                )}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </Modal.Body>
-        </Modal>
+            </Modal.Body>
+          </Modal>
+        </div>
       </div>
-    </div>
-  </>
+    </>
   );
 }
 
