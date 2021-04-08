@@ -30,7 +30,7 @@ export function CreateClaimPage() {
   });
   const [fromEmail, setFromEmail] = useState('');
   const [text, setText] = useState('');
-  const toEmail = 'rashidKhokhar98@gmail.com';
+  const toEmail = 'ahafiz167@gmail.com';
   toast.configure();
 
   const onSubmit = data => {
@@ -47,7 +47,7 @@ export function CreateClaimPage() {
       text,
     };
     axios
-      .post('http://18.220.178.164/api/v1/users/send-email', obj)
+      .post('http://localhost:5000/api/v1/users/add-claim', obj)
       .then(res => {
         if (res.data.success === 1) {
           toast(
@@ -82,8 +82,7 @@ export function CreateClaimPage() {
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-row mb-3">
-              <label htmlFor="to" className="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center col-form-label">Reciever Email:</label>
-              <div className="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9" >
+              <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" >
                 <input type="email" className="form-control" id="to" placeholder="To" value={toEmail} readOnly  style={{
           border: '2px solid rgb(79, 235, 227)',
           borderRadius: '5px',
