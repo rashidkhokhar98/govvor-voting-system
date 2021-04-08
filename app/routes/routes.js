@@ -5,6 +5,7 @@ import HomePage from '../containers/HomePage';
 import SignupPage from '../containers/SignupPage';
 import LoginPage from '../containers/LoginPage';
 import AddBillPage from '../containers/AddBillPage';
+import CreateClaimPage from '../containers/CreateClaimPage';
 import ElectionsPage from '../containers/ElectionsPage';
 import GovernomentPage from '../containers/GovernomentPage';
 import ConstitutionPage from '../containers/ConstitutionPage';
@@ -20,6 +21,7 @@ const Routes = () => (
       <Route exact path="/signup" component={SignupPage} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/bill" component={AddBillPage} />
+      <Route exact path="/claim" component={CreateClaimPage} />
       <Route exact path="/election" component={ElectionsPage} />
       <Route exact path="/government" component={GovernomentPage} />
       <Route exact path="/constitution" component={ConstitutionPage} />

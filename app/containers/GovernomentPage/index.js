@@ -79,7 +79,7 @@ export function GovernomentPage() {
         className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3"
         style={{ minHeight: '1000px' }}
       >
-        <div className="row  ">
+      {/*  <div className="row  ">
           <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
             <div className="form-group has-search">
               <Search className="form-control-feedback pt-2 pb-2" />
@@ -95,7 +95,7 @@ export function GovernomentPage() {
             </div>
           </div>
         </div>
-
+*/}
         <div className="row text-center">
           <h4
             className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"

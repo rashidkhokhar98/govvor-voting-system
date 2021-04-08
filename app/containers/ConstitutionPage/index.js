@@ -26,35 +26,21 @@ export function ConstitutionPage() {
   
   const search = value => {
     setSearchText(value);
-    const updatedKing =
-    kingCategories &&
-    kingCategories.length > 0 &&
-    kingCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
-    setKingCategories(updatedKing);
-
-    const updatedPrimenister =
-    primenisterCategories &&
-    primenisterCategories.length > 0 &&
-    primenisterCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
-    setPrimenisterCategories(updatedPrimenister);
-
-    const updatedSenator =
-    senatorCategories &&
-    senatorCategories.length > 0 &&
-    senatorCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
-    setsenatorCategories(updatedSenator);
-
-    const updatedMayer =
-    mayerCategories &&
-    mayerCategories.length > 0 &&
-    mayerCategories.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
-    setMayerCategories(updatedMayer);
+    const updatedgovt =
+    govt &&
+    govt.length > 0 &&
+    govt.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
+    setGovt(updatedgovt);
 
    if (!value) {
-     setKingCategories( ElectionCategories[placeHolderObj1].categories);
-     setPrimenisterCategories( ElectionCategories[placeHolderObj2].categories);
-     setsenatorCategories( ElectionCategories[placeHolderObj3].categories);
-     setMayerCategories( ElectionCategories[placeHolderObj4].categories);
+      useEffect(() => {
+    axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
+      const data = (res && res.data) || {};
+      
+        console.log('resdsdasd', data);
+        setGovt(data);
+    });
+  }, []);
   }
   };
 
@@ -77,7 +63,7 @@ export function ConstitutionPage() {
         <MenuBar />
       </div>
       <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3">
-
+{/* 
       <div className="row  ">
           <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
       <div className="form-group has-search">
@@ -91,6 +77,8 @@ export function ConstitutionPage() {
   </div>
   </div>
   </div>
+       */}
+       
         <div className="row ">
           {govt && govt.length === 0 && (
             <span className="mx-auto">No record exist</span>

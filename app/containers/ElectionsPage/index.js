@@ -272,7 +272,7 @@ export function ElectionsPage() {
                   </Button>
                   <Button
                     className="btn btn-danger px-auto mx-auto"
-                    href="/bill"
+                    href="/claim"
                     onClick={() => setCardShow(false)}
                   >
                     Claim

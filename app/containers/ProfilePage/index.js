@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -12,6 +12,9 @@ import MenuBar from '../../components/MenuBar';
 import Header from '../../components/header/header';
 
 export function ProfilePage() {
+ // const [profile, setProfile]= useState();
+  //setProfile(JSON.parse(localStorage.getItem('userInfo')));
+
   return (
     <>
       {!JSON.parse(localStorage.getItem('userInfo')) ? (
@@ -29,27 +32,39 @@ export function ProfilePage() {
               <MenuBar />
             </div>
             <div className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 bg-light ">
-              <div className="row mt-5 mx-auto px-auto">
+              <div className="row mt-5">
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                   <img
                     src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
                     alt="Circle Image"
-                    className="rounded-circle"
+                    className="rounded-circle mx-auto d-block"
                     width="200em"
                     height="200em"
                   />
-                  <h4 style={{ color: 'rgb(153,50,204)' }}>
+                </div>
+                </div>
+
+                <div className="row mt-2">
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
+                  <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
+                    <b>Name:</b>
                     {JSON.parse(localStorage.getItem('userInfo')) &&
                       JSON.parse(localStorage.getItem('userInfo')).newUser &&
                       JSON.parse(localStorage.getItem('userInfo')).newUser
                         .fullName}
                   </h4>
-                  <h4 style={{ color: 'rgb(153,50,204)' }}>{JSON.parse(localStorage.getItem('userInfo')) &&
+                  <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
+                  <b>Role:</b>
+                    {JSON.parse(localStorage.getItem('userInfo')) &&
                       JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser.role}</h4>
-                  <h4 style={{ color: 'rgb(153,50,204)' }}>{JSON.parse(localStorage.getItem('userInfo')) &&
+                      JSON.parse(localStorage.getItem('userInfo')).newUser.role}
+                      </h4>
+                  <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
+                  <b>Vote:</b>
+                    {JSON.parse(localStorage.getItem('userInfo')) &&
                       JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser.__v} </h4>
+                      JSON.parse(localStorage.getItem('userInfo')).newUser.__v} 
+                      </h4>
                 </div>
               </div>
               <div
@@ -134,6 +149,7 @@ export function ProfilePage() {
                         />
                       </div>
                     </div>
+                  
                     <div className="form-group row">
                       <label className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 control-label">
                         Country
