@@ -4,16 +4,44 @@
  *
  */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import MenuBar from '../../components/MenuBar';
 import Header from '../../components/header/header';
+import { roles } from '../../constant';
+
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const schema = yup.object().shape({
+  fullName: yup.string().required(),
+  email: yup.string().required(),
+  city: yup.string().required(),
+  state: yup.string().required(),
+  role: yup.string().required(),
+  country: yup.string().required(),
+});
 
 export function ProfilePage() {
- // const [profile, setProfile]= useState();
-  //setProfile(JSON.parse(localStorage.getItem('userInfo')));
+ const [profile, setProfile]= useState();
+ useEffect(() => {
+  setProfile(JSON.parse(localStorage.getItem('userInfo')).newUser);
+   },[])
+
+   //adding form functionality 
+   const { register, handleSubmit, reset } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const [formData, setFormData] = useState('');
+ const [role, setRole] = useState(roles || []);
+ const onSubmitt = data => {
+  setFormData(data);
+  console.log('data', formData);
+  reset();
+ }
 
   return (
     <>
@@ -48,31 +76,20 @@ export function ProfilePage() {
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
                   <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
                     <b>Name:</b>
-                    {JSON.parse(localStorage.getItem('userInfo')) &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser
-                        .fullName}
+                    {profile && profile.fullName}
                   </h4>
                   <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
                   <b>Role:</b>
-                    {JSON.parse(localStorage.getItem('userInfo')) &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser.role}
-                      </h4>
-                  <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
-                  <b>Vote:</b>
-                    {JSON.parse(localStorage.getItem('userInfo')) &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                      JSON.parse(localStorage.getItem('userInfo')).newUser.__v} 
+                    {profile && profile.role}
                       </h4>
                 </div>
               </div>
               <div
-                className="row mx-auto border mt-3"
-                style={{ backgroundColor: 'rgb(79, 235, 227)' }}
+                className="row mx-auto border rounded mt-3"
+                style={{ backgroundColor: 'rgb(79, 235, 227)', border:'2px solid rgb(153,50,204)' }}
               >
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3 ml-3 ">
-                  <form>
+                  <form onSubmit={handleSubmit(onSubmitt)}>
                     <div className="form-group row">
                       <label className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4  control-label">
                         Full Name
@@ -82,9 +99,8 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="fullName"
-                          placeholder= {JSON.parse(localStorage.getItem('userInfo')) &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser.fullName || "Empty"}
+                          placeholder= {profile && profile.fullName || "Enetr Name"}
+                          ref={register}
                         />
                       </div>
                     </div>
@@ -98,9 +114,8 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="email"
-                          placeholder={JSON.parse(localStorage.getItem('userInfo')) &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser.email || "Empty"}
+                          placeholder={profile && profile.email || "Enter Email"}
+                          ref={register}
                         />
                       </div>
                     </div>
@@ -109,14 +124,19 @@ export function ProfilePage() {
                         Role
                       </label>
                       <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <input
-                          className="form-control"
-                          type="text"
-                          name="role"
-                          placeholder={JSON.parse(localStorage.getItem('userInfo')) &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser.role || "Empty"}
-                        />
+                      <select
+                className="form-control"
+                id="clubName"
+                name="role"
+                placeholder={profile && profile.role || "Enter Role"}
+                ref={register}
+              >
+                <option disabled selected >{profile && profile.role || "Enter Role"}</option>
+                {role.map(item => (
+                  <option value={item.value}>{item.name}</option>
+                ))}
+              </select>
+                      
                       </div>
                     </div>
                     <div className="form-group row">
@@ -128,9 +148,8 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="city"
-                          placeholder={JSON.parse(localStorage.getItem('userInfo')) &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser.city || "Empty"}
+                          placeholder={profile && profile.city || "Enter City"}
+                          ref={register}
                         />
                       </div>
                     </div>
@@ -143,9 +162,8 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="state"
-                          placeholder={JSON.parse(localStorage.getItem('userInfo')) &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser.state || "Empty"}
+                          placeholder={profile && profile.state || "Enter State"}
+                          ref={register}
                         />
                       </div>
                     </div>
@@ -159,12 +177,18 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="country"
-                          placeholder={JSON.parse(localStorage.getItem('userInfo')) &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser &&
-                          JSON.parse(localStorage.getItem('userInfo')).newUser.country || "Empty"}
+                          placeholder={profile && profile.country || "Enter Country"}
+                          ref={register}
                         />
                       </div>
                     </div>
+                    <div className=" form-group row ">
+            <div className="col text-center">
+              <button type="submit" className="btn btn-danger">
+                Update
+              </button>
+            </div>
+          </div>
                   </form>
                 </div>
               </div>

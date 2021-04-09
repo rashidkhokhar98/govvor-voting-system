@@ -24,11 +24,11 @@ export function ConstitutionPage() {
   useEffect(() => {
     axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
       const data = (res && res.data) || {};
-      setGovt(data.result);
-      setSenatorInfo(data.senatorInfo);
-      setMayerInfo(data.mayerInfo);
-      setKingInfo(data.kingInfo);
-      setPmInfo(data.pmInfo);
+      setGovt(data);
+      setSenatorInfo(data.senator);
+      setMayerInfo(data.mayer);
+      setKingInfo(data.king);
+      setPmInfo(data.pm);
     });
   }, []);
 
@@ -52,155 +52,7 @@ export function ConstitutionPage() {
             )}
 
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              {govt && govt.king && (
-                <div
-                  className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
-                  style={{
-                    border: '1px solid rgb(79, 235, 227)',
-                    borderRadius: '5px',
-                  }}
-                >
-                  <div className="row mx-auto">
-                    <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <img
-                                src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
-                                alt="Profile Pic"
-                                width="80em"
-                                height="80em"
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <small> {kingInfo && kingInfo.fullName} </small>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <small> {kingInfo && kingInfo.role}</small>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <small> {govt.king.vote}</small>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                      <h3
-                        className="font-style "
-                        style={{ color: 'rgb(153,50,204)' }}
-                      >
-                        {govt.king.billName}
-                      </h3>
-                      <h4>Bill Number: {govt.king.billNumber}</h4>
-                      <p>{govt.king.billDescription}</p>
-                    </div>
-                  </div>
-                  <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
-
-                  <div className="row">
-                    <Button
-                      className="btn btn-primary px-auto mx-auto"
-                      onClick={() => setModalShow(true)}
-                    >
-                      Share
-                    </Button>
-                    <Button
-                      className="btn btn-danger px-auto mx-auto"
-                      href="/bill"
-                    >
-                      Claim
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="row ">
-            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              {govt && govt.pm && (
-                <div
-                  className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
-                  style={{
-                    border: '1px solid rgb(79, 235, 227)',
-                    borderRadius: '5px',
-                  }}
-                >
-                  <div className="row mx-auto">
-                    <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <img
-                                src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
-                                alt="Profile Pic"
-                                width="80em"
-                                height="80em"
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <small>{pmInfo && pmInfo.fullName}</small>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <small>{pmInfo && pmInfo.role}</small>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <small>{govt.pm.vote}</small>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-
-                    <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
-                      <h3
-                        className="font-style "
-                        style={{ color: 'rgb(153,50,204)' }}
-                      >
-                        {govt.pm.billName}
-                      </h3>
-                      <h4>Bill Number: {govt.pm.billNumber}</h4>
-                      <p>{govt.pm.billDescription}</p>
-                    </div>
-                  </div>
-                  <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
-
-                  <div className="row">
-                    <Button
-                      className="btn btn-primary px-auto mx-auto"
-                      onClick={() => setModalShow(true)}
-                    >
-                      Share
-                    </Button>
-                    <Button
-                      className="btn btn-danger px-auto mx-auto"
-                      href="/bill"
-                    >
-                      Claim
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="row ">
-            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              {govt && govt.senator && (
+              {kingInfo && (
                 <div
                   className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
                   style={{
@@ -226,18 +78,18 @@ export function ConstitutionPage() {
                             <td>
                               <small>
                                 {' '}
-                                {senatorInfo && senatorInfo.fullName}
+                                {kingInfo && kingInfo.userId.fullName}{' '}
                               </small>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <small> {senatorInfo && senatorInfo.role}</small>
+                              <small> {kingInfo && kingInfo.userId.role}</small>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <small> {govt.senator.vote}</small>
+                              <small> {kingInfo.vote}</small>
                             </td>
                           </tr>
                         </tbody>
@@ -249,10 +101,10 @@ export function ConstitutionPage() {
                         className="font-style "
                         style={{ color: 'rgb(153,50,204)' }}
                       >
-                        {govt.senator.billName}
+                        {kingInfo.billName}
                       </h3>
-                      <h4>Bill Number: {govt.senator.billNumber}</h4>
-                      <p>{govt.senator.billDescription}</p>.
+                      <h4>Bill Number: {kingInfo.billNumber}</h4>
+                      <p>{kingInfo.billDescription}</p>
                     </div>
                   </div>
                   <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
@@ -266,7 +118,7 @@ export function ConstitutionPage() {
                     </Button>
                     <Button
                       className="btn btn-danger px-auto mx-auto"
-                      href="/bill"
+                      href="/claim"
                     >
                       Claim
                     </Button>
@@ -277,7 +129,7 @@ export function ConstitutionPage() {
           </div>
           <div className="row ">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              {govt && govt.mayer && (
+              {pmInfo && (
                 <div
                   className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
                   style={{
@@ -301,17 +153,17 @@ export function ConstitutionPage() {
                           </tr>
                           <tr>
                             <td>
-                              <small>{mayerInfo && mayerInfo.fullName}</small>
+                              <small>{pmInfo && pmInfo.userId.fullName}</small>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <small> {mayerInfo && mayerInfo.role}</small>
+                              <small>{pmInfo && pmInfo.userId.role}</small>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <small> {govt.mayer.vote}</small>
+                              <small>{pmInfo.vote}</small>
                             </td>
                           </tr>
                         </tbody>
@@ -323,10 +175,10 @@ export function ConstitutionPage() {
                         className="font-style "
                         style={{ color: 'rgb(153,50,204)' }}
                       >
-                        {govt.mayer.billName}
+                        {pmInfo.billName}
                       </h3>
-                      <h4>Bill Number: {govt.mayer.billNumber}</h4>
-                      <p>{govt.mayer.billDescription}</p>
+                      <h4>Bill Number: {pmInfo.billNumber}</h4>
+                      <p>{pmInfo.billDescription}</p>
                     </div>
                   </div>
                   <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
@@ -340,7 +192,166 @@ export function ConstitutionPage() {
                     </Button>
                     <Button
                       className="btn btn-danger px-auto mx-auto"
-                      href="/bill"
+                      href="/claim"
+                    >
+                      Claim
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="row ">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              {senatorInfo && (
+                <div
+                  className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+                  style={{
+                    border: '1px solid rgb(79, 235, 227)',
+                    borderRadius: '5px',
+                  }}
+                >
+                  <div className="row mx-auto">
+                    <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                                alt="Profile Pic"
+                                width="80em"
+                                height="80em"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                {' '}
+                                {senatorInfo && senatorInfo.userId.fullName}
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                {' '}
+                                {senatorInfo && senatorInfo.userId.role}
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small> {senatorInfo.vote}</small>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                      <h3
+                        className="font-style "
+                        style={{ color: 'rgb(153,50,204)' }}
+                      >
+                        {senatorInfo.billName}
+                      </h3>
+                      <h4>Bill Number: {senatorInfo.billNumber}</h4>
+                      <p>{senatorInfo.billDescription}</p>.
+                    </div>
+                  </div>
+                  <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
+
+                  <div className="row">
+                    <Button
+                      className="btn btn-primary px-auto mx-auto"
+                      onClick={() => setModalShow(true)}
+                    >
+                      Share
+                    </Button>
+                    <Button
+                      className="btn btn-danger px-auto mx-auto"
+                      href="/claim"
+                    >
+                      Claim
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="row ">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              {mayerInfo && (
+                <div
+                  className="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 shadow mx-auto mt-4 px-auto pb-2 pt-2"
+                  style={{
+                    border: '1px solid rgb(79, 235, 227)',
+                    borderRadius: '5px',
+                  }}
+                >
+                  <div className="row mx-auto">
+                    <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 text-center">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                src="https://www.pngarts.com/files/6/User-Avatar-in-Suit-PNG.png"
+                                alt="Profile Pic"
+                                width="80em"
+                                height="80em"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                {mayerInfo && mayerInfo.userId.fullName}
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small>
+                                {' '}
+                                {mayerInfo && mayerInfo.userId.role}
+                              </small>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <small> {mayerInfo.vote}</small>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div className="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 text-justify">
+                      <h3
+                        className="font-style "
+                        style={{ color: 'rgb(153,50,204)' }}
+                      >
+                        {mayerInfo.billName}
+                      </h3>
+                      <h4>Bill Number: {mayerInfo.billNumber}</h4>
+                      <p>{mayerInfo.billDescription}</p>
+                    </div>
+                  </div>
+                  <hr style={{ border: '1px solid rgb(79, 235, 227)' }} />
+
+                  <div className="row">
+                    <Button
+                      className="btn btn-primary px-auto mx-auto"
+                      onClick={() => setModalShow(true)}
+                    >
+                      Share
+                    </Button>
+                    <Button
+                      className="btn btn-danger px-auto mx-auto"
+                      href="/claim"
                     >
                       Claim
                     </Button>

@@ -21,33 +21,7 @@ import CompactProfile from '../../components/CompactProfile';
 import Header from '../../components/header/header';
 
 export function GovernomentPage() {
-  /* const placeHolderObj1="King";
-  const placeHolderObj2="Primenister";
-  const placeHolderObj3="Senator";
-  const placeHolderObj4="Mayer";
-   const[kingCategories, setKingCategories]=useState(ElectionCategories[placeHolderObj1].categories || []);
-   const[primenisterCategories, setPrimenisterCategories]=useState(ElectionCategories[placeHolderObj2].categories || []);
-   const[senatorCategories, setsenatorCategories]=useState(ElectionCategories[placeHolderObj3].categories || []);
-   const[mayerCategories, setMayerCategories]=useState(ElectionCategories[placeHolderObj4].categories || []);
-  */
   const [govt, setGovt] = useState();
-
-  const [searchText, setSearchText] = useState('');
-
-  /*
-  const search = value => {
-    setSearchText(value);
-    const updated =
-      govt &&
-      govt.length > 0 &&
-      govt.filter(el => el.name.toLowerCase().indexOf(value) !== -1);
-    setGovt(updated);
-
-    if (!value) {
-    }
-  };
-*/
-
   const [card, setCard] = useState();
   const [cardShow, setCardShow] = useState(false);
   const [senatorInfo, setSenatorInfo] = useState(null);
@@ -55,7 +29,6 @@ export function GovernomentPage() {
   const [pmInfo, setPmInfo] = useState(null);
   const [kingInfo, setKingInfo] = useState(null);
   const handleCategoryItem = value => {
-    // e.preventDefault();
     setCard(value);
     setCardShow(true);
   };
@@ -64,13 +37,13 @@ export function GovernomentPage() {
     axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
       const data = (res && res.data) || {};
       setGovt(data.result);
-      setSenatorInfo(data.senatorInfo);
-      setMayerInfo(data.mayerInfo);
-      setKingInfo(data.kingInfo);
-      setPmInfo(data.pmInfo);
+      setSenatorInfo(data.senator);
+      setMayerInfo(data.mayer);
+      setKingInfo(data.king);
+      setPmInfo(data.pm);
     });
   }, []);
-  console.log('govt', govt);
+
   return (
     <>
       <Header />
@@ -82,23 +55,6 @@ export function GovernomentPage() {
           className="col-8 col-sm-8 col-md-9 col-lg-10 col-xl-10 mt-3"
           style={{ minHeight: '1000px' }}
         >
-          {/*  <div className="row  ">
-          <div className="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
-            <div className="form-group has-search">
-              <Search className="form-control-feedback pt-2 pb-2" />
-              <input
-                type="Search"
-                className="form-control"
-                placeholder="Search Candidates.."
-                aria-label="Search"
-                value={searchText}
-                aria-describedby="search-addon"
-                onChange={e => search(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-*/}
           <div className="row text-center">
             <h4
               className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
@@ -114,8 +70,8 @@ export function GovernomentPage() {
               </div>
             )}
 
-            {govt && govt.king && (
-              <div onClick={() => handleCategoryItem(govt.king)}>
+            {kingInfo && (
+              <div onClick={() => handleCategoryItem(kingInfo)}>
                 <Card
                   className=" mr-3 mb-3 shadow"
                   style={{
@@ -136,21 +92,21 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {kingInfo && kingInfo.fullName}
+                      {kingInfo && kingInfo.userId.fullName}
                       <br />
-                      {kingInfo && kingInfo.role}
+                      {kingInfo && kingInfo.userId.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {govt.king.vote}
+                      {kingInfo.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
               </div>
             )}
 
-            {govt && govt.pm && (
-              <div onClick={() => handleCategoryItem(govt.pm)}>
+            {pmInfo && (
+              <div onClick={() => handleCategoryItem(pmInfo)}>
                 <Card
                   className=" mr-3 mb-3 shadow"
                   style={{
@@ -171,21 +127,21 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {pmInfo && pmInfo.fullName}
+                      {pmInfo && pmInfo.userId.fullName}
                       <br />
-                      {pmInfo && pmInfo.role}
+                      {pmInfo && pmInfo.userId.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {govt.pm.vote}
+                      {pmInfo.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
               </div>
             )}
 
-            {govt && govt.senator && (
-              <div onClick={() => handleCategoryItem(govt.senator)}>
+            {senatorInfo && (
+              <div onClick={() => handleCategoryItem(senatorInfo)}>
                 <Card
                   className=" mr-3 mb-3 shadow"
                   style={{
@@ -206,21 +162,21 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {senatorInfo && senatorInfo.fullName}
+                      {senatorInfo && senatorInfo.userId.fullName}
                       <br />
-                      {senatorInfo && senatorInfo.role}
+                      {senatorInfo && senatorInfo.userId.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {govt.senator.vote}
+                      {senatorInfo.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
               </div>
             )}
 
-            {govt && govt.mayer && (
-              <div onClick={() => handleCategoryItem(govt.mayer)}>
+            {mayerInfo && (
+              <div onClick={() => handleCategoryItem(mayerInfo)}>
                 <Card
                   className=" mr-3 mb-3 shadow"
                   style={{
@@ -241,13 +197,13 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {mayerInfo && mayerInfo.fullName}
+                      {mayerInfo && mayerInfo.userId.fullName}
                       <br />
-                      {mayerInfo && mayerInfo.role}
+                      {mayerInfo && mayerInfo.userId.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {govt.mayer.vote}
+                      {mayerInfo.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -328,22 +284,6 @@ export function GovernomentPage() {
                           <p>{card.billDescription}</p>
                         </div>
                       </div>
-
-                      {/*   <div className="row">
-                <Button
-                  className="btn btn-success px-auto mx-auto"
-                  onClick={() => addVote(card)}
-                  disabled={disableVote}
-                >
-                  Vote
-                </Button>
-                <Button className="btn btn-primary px-auto mx-auto">
-                  Share
-                </Button>
-                <Button className="btn btn-danger px-auto mx-auto" href="/bill">
-                  Claim
-                </Button>
-              </div> */}
                     </div>
                   )}
                 </div>
