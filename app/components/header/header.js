@@ -11,6 +11,7 @@ const Header = () => {
       <div className="container-fluid">
         <div className="navbar-header">
           <a
+            href="/"
             className="navbar-brand  font-weight-bold "
             style={{ color: 'rgb(153,50,204)' }}
           >
