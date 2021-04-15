@@ -22,7 +22,7 @@ export function ConstitutionPage() {
   const [pmInfo, setPmInfo] = useState(null);
   const [kingInfo, setKingInfo] = useState(null);
   useEffect(() => {
-    axios.get('http://localhost:5000/api/v1/users/get-govt').then(res => {
+    axios.get('https://hrwaller.com/api/v1/users/get-govt').then(res => {
       const data = (res && res.data) || {};
       setGovt(data);
       setSenatorInfo(data.senator);

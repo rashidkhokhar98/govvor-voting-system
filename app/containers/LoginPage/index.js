@@ -31,7 +31,7 @@ export function LoginPage({ history }) {
 
   const onSubmitt = data => {
     setFormData({ ...data });
-    axios.post('http://localhost:5000/api/v1/users/login', data).then(res => {
+    axios.post('https://hrwaller.com/api/v1/users/login', data).then(res => {
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       history.push('/public');
 

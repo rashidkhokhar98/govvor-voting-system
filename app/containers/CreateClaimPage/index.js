@@ -47,7 +47,7 @@ export function CreateClaimPage() {
       text,
     };
     axios
-      .post('http://localhost:5000/api/v1/users/add-claim', obj)
+      .post('https://hrwaller.com/api/v1/users/add-claim', obj)
       .then(res => {
         if (res.data.success === 1) {
           toast(

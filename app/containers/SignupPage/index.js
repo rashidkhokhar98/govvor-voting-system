@@ -46,7 +46,7 @@ export function SignupPage({ history }) {
     const obj = { ...data, image };
     setFormData({ obj });
     console.log('data', obj);
-    axios.post('http://localhost:5000/api/v1/users/register', obj).then(res => {
+    axios.post('https://hrwaller.com/api/v1/users/register', obj).then(res => {
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       reset();
      if (res.data.success === 1) {

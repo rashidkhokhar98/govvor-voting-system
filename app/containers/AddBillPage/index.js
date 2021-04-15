@@ -35,7 +35,7 @@ export function AddBillPage() {
       userId: userInfo.newUser._id,
     };
     axios
-      .post('http://localhost:5000/api/v1/users/add-bill', dataUpdate)
+      .post('https://hrwaller.com/api/v1/users/add-bill', dataUpdate)
       .then(res => {
         const {
           data: { success },

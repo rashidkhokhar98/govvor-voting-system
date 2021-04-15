@@ -73,7 +73,7 @@ export function ElectionsPage() {
     setMayerCategories(updatedMayer);
 
   if (!value) {
-    axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
+    axios.get('https://hrwaller.com/api/v1/users/get-users').then(res => {
       const { KING, MAYER, PM, SENATOR } = (res && res.data) || {};
       setKingCategories(KING);
       setPrimenisterCategories(PM);
@@ -88,7 +88,7 @@ export function ElectionsPage() {
    console.log("handleCategoryItem triger")
     // e.preventDefault();
     axios
-      .get(`http://localhost:5000/api/v1/users/get-user?id=${value._id}`)
+      .get(`https://hrwaller.com/api/v1/users/get-user?id=${value._id}`)
       .then(res => {
         const { data } = res || {};
         if (data.success === 1) {
@@ -112,7 +112,7 @@ export function ElectionsPage() {
  
   async function onToken(token, addresses) {
     const response = await axios.post(
-      'http://localhost:5000/api/v1/users/checkout',
+      'https://hrwaller.com/api/v1/users/checkout',
       { token, product, userId },
     );
     const { status } = response.data;
@@ -130,7 +130,7 @@ export function ElectionsPage() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/v1/users/get-users').then(res => {
+    axios.get('https://hrwaller.com/api/v1/users/get-users').then(res => {
       const { KING, MAYER, PM, SENATOR } = (res && res.data) || {};
       setKingCategories(KING);
       setPrimenisterCategories(PM);
