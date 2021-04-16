@@ -247,7 +247,7 @@ export function ElectionsPage() {
                     <StripeCheckout
                       className="px-auto mx-auto"
                       token={onToken}
-                      stripeKey="pk_test_Lp6L3Vsfdml5cUGlmP5yzysT"
+                      stripeKey="pk_live_51IUk1jJRaZ5wTsodfr14oFVx9K8aDeccs7LxOH1PFf3KDJbJhXHtN38RQgjJZ5B3T4tm9i1DPlDDPTjQm0gJQnU500LjbagIeo"
                       name="Govvor.com"
                       amount={product.price * 100}
                       billingAddress
