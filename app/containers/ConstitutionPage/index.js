@@ -25,10 +25,10 @@ export function ConstitutionPage() {
     axios.get('https://hrwaller.com/api/v1/users/get-govt').then(res => {
       const data = (res && res.data) || {};
       setGovt(data);
-      setSenatorInfo(data.senator);
-      setMayerInfo(data.mayer);
-      setKingInfo(data.king);
-      setPmInfo(data.pm);
+      setSenatorInfo(data.senatorInfo);
+      setMayerInfo(data.mayerInfo);
+      setKingInfo(data.kingInfo);
+      setPmInfo(data.pmInfo);
     });
   }, []);
 
@@ -76,15 +76,12 @@ export function ConstitutionPage() {
                           </tr>
                           <tr>
                             <td>
-                              <small>
-                                {' '}
-                                {kingInfo && kingInfo.userId.fullName}{' '}
-                              </small>
+                              <small> {kingInfo && kingInfo.fullName} </small>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <small> {kingInfo && kingInfo.userId.role}</small>
+                              <small> {kingInfo && kingInfo.role}</small>
                             </td>
                           </tr>
                           <tr>
@@ -229,16 +226,13 @@ export function ConstitutionPage() {
                             <td>
                               <small>
                                 {' '}
-                                {senatorInfo && senatorInfo.userId.fullName}
+                                {senatorInfo && senatorInfo.fullName}
                               </small>
                             </td>
                           </tr>
                           <tr>
                             <td>
-                              <small>
-                                {' '}
-                                {senatorInfo && senatorInfo.userId.role}
-                              </small>
+                              <small> {senatorInfo && senatorInfo.role}</small>
                             </td>
                           </tr>
                           <tr>

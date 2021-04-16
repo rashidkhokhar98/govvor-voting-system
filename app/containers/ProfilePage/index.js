@@ -4,17 +4,18 @@
  *
  */
 
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import MenuBar from '../../components/MenuBar';
-import Header from '../../components/header/header';
-import { roles } from '../../constant';
-
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { roles } from '../../constant';
+import Header from '../../components/header/header';
+import MenuBar from '../../components/MenuBar';
 
 const schema = yup.object().shape({
   fullName: yup.string().required(),
@@ -26,22 +27,34 @@ const schema = yup.object().shape({
 });
 
 export function ProfilePage() {
- const [profile, setProfile]= useState();
- useEffect(() => {
-  setProfile(JSON.parse(localStorage.getItem('userInfo')).newUser);
-   },[])
+  const [profile, setProfile] = useState();
+  toast.configure();
+  useEffect(() => {
+    setProfile(JSON.parse(localStorage.getItem('userInfo')).newUser);
+  }, []);
 
-   //adding form functionality 
-   const { register, handleSubmit, reset } = useForm({
+  // adding form functionality
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const [formData, setFormData] = useState('');
- const [role, setRole] = useState(roles || []);
- const onSubmitt = data => {
-  setFormData(data);
-  console.log('data', formData);
-  reset();
- }
+  const [role, setRole] = useState(roles || []);
+  const onSubmitt = data => {
+    setFormData(data);
+    const id = JSON.parse(localStorage.getItem('userInfo'));
+    data.userId = id.newUser._id;
+    axios
+      .put('https://hrwaller.com/api/v1/users/update-profile', data)
+      .then(res => {
+        if (res.data.success === 1) {
+          // localStorage.setItem('userInfo', res.data)
+          toast('Success! profile has been updated', { type: 'success' });
+        } else {
+          toast(`${res.data.message}`, { type: 'error' });
+        }
+      });
+    reset();
+  };
 
   return (
     <>
@@ -70,23 +83,32 @@ export function ProfilePage() {
                     height="200em"
                   />
                 </div>
-                </div>
+              </div>
 
-                <div className="row mt-2">
+              <div className="row mt-2">
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                  <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
+                  <h4
+                    className="text-center"
+                    style={{ color: 'rgb(153,50,204)' }}
+                  >
                     <b>Name:</b>
                     {profile && profile.fullName}
                   </h4>
-                  <h4 className="text-center" style={{ color: 'rgb(153,50,204)' }}>
-                  <b>Role:</b>
+                  <h4
+                    className="text-center"
+                    style={{ color: 'rgb(153,50,204)' }}
+                  >
+                    <b>Role:</b>
                     {profile && profile.role}
-                      </h4>
+                  </h4>
                 </div>
               </div>
               <div
                 className="row mx-auto border rounded mt-3"
-                style={{ backgroundColor: 'rgb(79, 235, 227)', border:'2px solid rgb(153,50,204)' }}
+                style={{
+                  backgroundColor: 'rgb(79, 235, 227)',
+                  border: '2px solid rgb(153,50,204)',
+                }}
               >
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3 ml-3 ">
                   <form onSubmit={handleSubmit(onSubmitt)}>
@@ -99,7 +121,9 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="fullName"
-                          placeholder= {profile && profile.fullName || "Enetr Name"}
+                          placeholder={
+                            (profile && profile.fullName) || 'Enetr Name'
+                          }
                           ref={register}
                         />
                       </div>
@@ -114,7 +138,9 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="email"
-                          placeholder={profile && profile.email || "Enter Email"}
+                          placeholder={
+                            (profile && profile.email) || 'Enter Email'
+                          }
                           ref={register}
                         />
                       </div>
@@ -124,19 +150,22 @@ export function ProfilePage() {
                         Role
                       </label>
                       <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                      <select
-                className="form-control"
-                id="clubName"
-                name="role"
-                placeholder={profile && profile.role || "Enter Role"}
-                ref={register}
-              >
-                <option disabled selected >{profile && profile.role || "Enter Role"}</option>
-                {role.map(item => (
-                  <option value={item.value}>{item.name}</option>
-                ))}
-              </select>
-                      
+                        <select
+                          className="form-control"
+                          id="clubName"
+                          name="role"
+                          placeholder={
+                            (profile && profile.role) || 'Enter Role'
+                          }
+                          ref={register}
+                        >
+                          <option disabled selected>
+                            {(profile && profile.role) || 'Enter Role'}
+                          </option>
+                          {role.map(item => (
+                            <option value={item.value}>{item.name}</option>
+                          ))}
+                        </select>
                       </div>
                     </div>
                     <div className="form-group row">
@@ -148,7 +177,9 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="city"
-                          placeholder={profile && profile.city || "Enter City"}
+                          placeholder={
+                            (profile && profile.city) || 'Enter City'
+                          }
                           ref={register}
                         />
                       </div>
@@ -162,12 +193,14 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="state"
-                          placeholder={profile && profile.state || "Enter State"}
+                          placeholder={
+                            (profile && profile.state) || 'Enter State'
+                          }
                           ref={register}
                         />
                       </div>
                     </div>
-                  
+
                     <div className="form-group row">
                       <label className="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 control-label">
                         Country
@@ -177,18 +210,20 @@ export function ProfilePage() {
                           className="form-control"
                           type="text"
                           name="country"
-                          placeholder={profile && profile.country || "Enter Country"}
+                          placeholder={
+                            (profile && profile.country) || 'Enter Country'
+                          }
                           ref={register}
                         />
                       </div>
                     </div>
                     <div className=" form-group row ">
-            <div className="col text-center">
-              <button type="submit" className="btn btn-danger">
-                Update
-              </button>
-            </div>
-          </div>
+                      <div className="col text-center">
+                        <button type="submit" className="btn btn-danger">
+                          Update
+                        </button>
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>

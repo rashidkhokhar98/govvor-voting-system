@@ -37,10 +37,10 @@ export function GovernomentPage() {
     axios.get('https://hrwaller.com/api/v1/users/get-govt').then(res => {
       const data = (res && res.data) || {};
       setGovt(data.result);
-      setSenatorInfo(data.senator);
-      setMayerInfo(data.mayer);
-      setKingInfo(data.king);
-      setPmInfo(data.pm);
+      setSenatorInfo(data.senatorInfo);
+      setMayerInfo(data.mayerInfo);
+      setKingInfo(data.kingInfo);
+      setPmInfo(data.pmInfo);
     });
   }, []);
 
@@ -92,13 +92,13 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {kingInfo && kingInfo.userId.fullName}
+                      {kingInfo && kingInfo.fullName}
                       <br />
-                      {kingInfo && kingInfo.userId.role}
+                      {kingInfo && kingInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {kingInfo.vote}
+                      {govt.king.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -127,13 +127,13 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {pmInfo && pmInfo.userId.fullName}
+                      {pmInfo && pmInfo.fullName}
                       <br />
-                      {pmInfo && pmInfo.userId.role}
+                      {pmInfo && pmInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {pmInfo.vote}
+                      {govt.pm.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -162,13 +162,13 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {senatorInfo && senatorInfo.userId.fullName}
+                      {senatorInfo && senatorInfo.fullName}
                       <br />
-                      {senatorInfo && senatorInfo.userId.role}
+                      {senatorInfo && senatorInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {senatorInfo.vote}
+                      {govt.senator.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -197,13 +197,13 @@ export function GovernomentPage() {
                     <Card.Text
                       style={{ fontSize: 'medium', lineHeight: '25px' }}
                     >
-                      {mayerInfo && mayerInfo.userId.fullName}
+                      {mayerInfo && mayerInfo.fullName}
                       <br />
-                      {mayerInfo && mayerInfo.userId.role}
+                      {mayerInfo && mayerInfo.role}
                     </Card.Text>
                     <Card.Title style={{ lineHeight: '5px' }}>
                       Votes:
-                      {mayerInfo.vote}
+                      {govt.mayer.vote}
                     </Card.Title>
                   </Card.Body>
                 </Card>
@@ -219,9 +219,9 @@ export function GovernomentPage() {
           >
             <Modal.Header>
               <Modal.Title id="contained-modal-title-vcenter">
-                <strong> {card && card.userId.fullName}</strong>{' '}
+                <strong> {card && card.fullName}</strong>{' '}
                 <small>
-                  (SELECTED {card && card.userId.role} OF THE WEEK!)
+                  (SELECTED {card && card.role} OF THE WEEK!)
                 </small>
               </Modal.Title>
 
@@ -256,13 +256,13 @@ export function GovernomentPage() {
                               </tr>
                               <tr>
                                 <td>
-                                  <small>{card.userId.fullName}</small>
+                                  <small>{card.fullName}</small>
                                 </td>
                               </tr>
 
                               <tr>
                                 <td>
-                                  <small>{card.userId.role}</small>
+                                  <small>{card.role}</small>
                                 </td>
                               </tr>
                               <tr>
