@@ -327,7 +327,7 @@ export function ElectionsPage() {
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
                         <b>Votes:</b>
-                        {item.vote || 0}
+                        {(item.bill && item.bill.length > 0 && item.bill[0].vote) || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
@@ -383,7 +383,7 @@ export function ElectionsPage() {
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
                         <b>Votes:</b>
-                        {item.vote || 0}
+                        {(item.bill && item.bill.length > 0 && item.bill[0].vote) || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
@@ -492,7 +492,7 @@ export function ElectionsPage() {
                       </Card.Text>
                       <Card.Title style={{ lineHeight: '5px' }}>
                         <b>Votes:</b>
-                        {item.vote || 0}
+                        {(item.bill && item.bill.length > 0 && item.bill[0].vote) || 0}
                       </Card.Title>
                     </Card.Body>
                   </Card>
